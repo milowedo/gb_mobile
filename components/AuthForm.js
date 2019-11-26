@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {StyleSheet} from "react-native";
 import SpacingViewComponent from "./SpacingViewComponent";
-import {Button, Input, Text} from "react-native-elements";
+import {Button, Icon, Input, Text} from "react-native-elements";
+import {signingStyles as styles} from "../constants/Layouts"
 
 const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle}) => {
     const [email, setEmail] = useState('');
@@ -9,20 +9,44 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
 
     return (
         <>
-            <SpacingViewComponent>
-                <Text h3>{headerText}</Text>
+            <SpacingViewComponent margin={30}>
+                <Text h2>{headerText}</Text>
             </SpacingViewComponent>
             <Input
+                inputContainerStyle={styles.input}
+                placeholder={"maya@gmail.com"}
+                rightIcon={
+                    <Icon
+                        name='user'
+                        type='evilicon'
+                        color='#517fa4'
+                        size={28}
+                    />
+                }
+                rightIconContainerStyle={styles.inputIcons}
                 value={email}
-                label="Email"
+                label="email address"
+                labelStyle={styles.inputLabel}
                 onChangeText={setEmail}
                 autoCapitalize="none"
                 autoCorrect={false}
             />
             <Input
+                inputContainerStyle={styles.input}
+                placeholder={"kCj!cC#gL8c"}
+                rightIcon={
+                    <Icon
+                        name='lock'
+                        type='evilicon'
+                        color='#517fa4'
+                        size={28}
+                    />
+                }
+                label="password"
+                labelStyle={styles.inputLabel}
+                rightIconContainerStyle={styles.inputIcons}
                 secureTextEntry
                 value={password}
-                label="Password"
                 onChangeText={setPassword}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -30,6 +54,7 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
             {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
             <SpacingViewComponent margin={20}>
                 <Button
+                    buttonStyle={styles.submitButton}
                     onPress={() => {
                         callbackOnSubmit({email, password});
                     }}
@@ -38,15 +63,5 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
         </>
     )
 };
-
-const styles = StyleSheet.create({
-    errorMessage: {
-        alignSelf: 'center',
-        fontSize: 16,
-        color: 'red',
-        marginLeft: 15,
-        marginTop: 15
-    },
-});
 
 export default AuthForm;

@@ -12,7 +12,8 @@ export default createAppContainer(
             AuthFlow: AuthSwitchNavigator,
         },
         {
-            initialRouteName: 'Welcome',
+            // initialRouteName: 'Welcome',
+            initialRouteName: 'AuthFlow',
         }
     )
 );

@@ -5,9 +5,9 @@ import React from "react";
 import {withNavigation} from "react-navigation";
 
 
-const NavLink = ({navigation, text, routeName}) => {
+const NavLink = ({navigation, text, routeName, containerStyle}) => {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate({routeName})}>
+        <TouchableOpacity onPress={() => navigation.navigate({routeName})} style={containerStyle}>
             <SpacingViewComponent>
                 <Text style={styles.navLink}>{text}</Text>
             </SpacingViewComponent>
@@ -17,8 +17,9 @@ const NavLink = ({navigation, text, routeName}) => {
 
 const styles = StyleSheet.create({
     navLink: {
-        color: 'blue'
-    }
+        color: '#517fa4'
+    },
+
 });
 
 export default withNavigation(NavLink);

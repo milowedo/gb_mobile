@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
-import {StyleSheet, View} from "react-native";
+import {View} from "react-native";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 import {NavigationEvents} from "react-navigation";
+import {signingStyles as styles} from "../constants/Layouts"
 
 const SignupScreen = ({navigation}) => {
 
@@ -13,14 +14,15 @@ const SignupScreen = ({navigation}) => {
             <NavigationEvents onWillBlur={null}/>
             <AuthForm
                 errorMessage={null}
-                headerText="Sign up for tracker"
+                headerText="Sign up"
                 callbackOnSubmit={() => navigation.navigate('AppFlow')}
                 submitButtonTitle="Sign up"
             />
-            <NavLink
-                routeName="Signin"
-                text="Already have an account? Sign in instead"
-            />
+                <NavLink
+                    containerStyle={{position:'absolute', bottom:0}}
+                    text="Already have an account? Sign in instead"
+                    routeName="Signin"
+                />
         </View>
     )
 };
@@ -30,15 +32,6 @@ SignupScreen.navigationOptions = () => {
         header: null
     }
 };
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        marginBottom: 150
-    }
-});
 
 export default SignupScreen;
 
