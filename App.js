@@ -5,7 +5,9 @@ import * as Font from 'expo-font';
 import React, {useState} from 'react';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
-import AppNavigator from './navigation/AppSwitchNavigator';
+import AppNavigator from './src/navigation/AppSwitchNavigator';
+import {setNavigator} from "./src/utils/navigationHelper";
+import {Provider as AuthenticationProvider} from './src/context/AuthenticationContext'
 
 export default function App(props) {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -22,7 +24,9 @@ export default function App(props) {
         return (
             <View style={styles.container}>
                 {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-                <AppNavigator/>
+                <AuthenticationProvider>
+                    <AppNavigator ref={setNavigator} />
+                </AuthenticationProvider>
             </View>
         );
     }
@@ -45,8 +49,7 @@ async function loadResourcesAsync() {
 }
 
 function handleLoadingError(error) {
-    // In this case, you might want to report the error to your error reporting
-    //   // service, for example Sentry
+
     console.warn(error);
 }
 

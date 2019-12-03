@@ -6,7 +6,7 @@ import {createStackNavigator} from "react-navigation-stack";
 const AuthStackNavigator = createStackNavigator(
     {
         Signin: SigninScreen,
-        Signup: SignupScreen,
+        Signup: SignupScreen
     }
 );
 

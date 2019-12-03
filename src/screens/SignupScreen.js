@@ -4,18 +4,20 @@ import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 import {NavigationEvents} from "react-navigation";
 import {signingStyles as styles} from "../constants/Layouts"
+import {Context as AuthContext} from "../context/AuthenticationContext";
 
-const SignupScreen = ({navigation}) => {
 
-    //const {state, signup, clearErrorMessage, tryLocalSignin} = useContext(AuthContext);
+const SignupScreen = () => {
+
+    const {state, signup, clearErrorMessage, tryLocalSignin} = useContext(AuthContext);
 
     return (
         <View style={styles.container}>
-            <NavigationEvents onWillBlur={null}/>
+            <NavigationEvents onWillBlur={clearErrorMessage}/>
             <AuthForm
-                errorMessage={null}
+                errorMessage={state.errorMessage}
                 headerText="Sign up"
-                callbackOnSubmit={() => navigation.navigate('AppFlow')}
+                callbackOnSubmit={signup}
                 submitButtonTitle="Sign up"
             />
                 <NavLink
