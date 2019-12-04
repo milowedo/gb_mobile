@@ -8,13 +8,13 @@ import ResolveAuthScreen from "../screens/ResolveAuthScreen";
 
 export default createAppContainer(
     createSwitchNavigator({
-            Welcome: WelcomeScreen,
             Resolve: ResolveAuthScreen,
+            Welcome: WelcomeScreen,
             AuthFlow: AuthSwitchNavigator,
             AppFlow: InnerTabNavigator,
         },
         {
-            initialRouteName: 'Welcome',
+            initialRouteName: 'Resolve',
             // initialRouteName: 'AuthFlow',
         }
     )
