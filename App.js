@@ -8,6 +8,7 @@ import {Ionicons} from '@expo/vector-icons';
 import AppNavigator from './src/navigation/AppSwitchNavigator';
 import {setNavigator} from "./src/utils/navigationHelper";
 import {Provider as AuthenticationProvider} from './src/context/AuthenticationContext'
+import {Provider as BooksProvide} from './src/context/BooksContext'
 
 export default function App(props) {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -24,9 +25,11 @@ export default function App(props) {
         return (
             <View style={styles.container}>
                 {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-                <AuthenticationProvider>
-                    <AppNavigator ref={setNavigator} />
-                </AuthenticationProvider>
+                <BooksProvide>
+                    <AuthenticationProvider>
+                        <AppNavigator ref={setNavigator}/>
+                    </AuthenticationProvider>
+                </BooksProvide>
             </View>
         );
     }

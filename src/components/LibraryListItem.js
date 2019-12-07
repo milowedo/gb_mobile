@@ -1,24 +1,30 @@
-import {Icon, ListItem} from "react-native-elements";
 import React from "react";
+import {StyleSheet, Text, View} from "react-native";
 
 const LibraryListItem = ({book}) => {
     return (
-        <ListItem
-            title={book.title}
-            subtitle={book.writer}
-            bottomDivider
-            chevron={
-                <Icon
-                    name='sc-telegram'
-                    type='evilicon'
-                    color='#517fa4'
-                    onPress={() => {
-                        console.log("TO DO: on click of the position do something")
-                    }}
-                />
-            }
-        />
-    )
+        <View>
+            <Text style={styles.titleStyle}>
+                {book.title}
+            </Text>
+
+            <Text style={styles.writerStyle}>
+                {book.writer}
+            </Text>
+        </View>
+    );
 };
 
 export default LibraryListItem;
+
+const styles = StyleSheet.create(
+    {
+        titleStyle: {
+            fontSize: 16,
+            fontWeight: 'bold'
+        },
+        writerStyle: {
+            fontSize: 14
+        }
+    }
+);
