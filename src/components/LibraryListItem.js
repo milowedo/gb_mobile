@@ -1,9 +1,9 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text} from "react-native";
 
 const LibraryListItem = ({book}) => {
     return (
-        <View>
+        <>
             <Text style={styles.titleStyle}>
                 {book.title}
             </Text>
@@ -11,7 +11,7 @@ const LibraryListItem = ({book}) => {
             <Text style={styles.writerStyle}>
                 {book.writer}
             </Text>
-        </View>
+        </>
     );
 };
 

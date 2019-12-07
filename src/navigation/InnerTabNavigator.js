@@ -1,11 +1,10 @@
 import React from 'react';
-import {Platform} from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
-import TabBarIcon from "../components/TabBarIcon";
 import MyLibraryScreen from "../screens/MyLibraryScreen";
 import OffersScreen from "../screens/OffersScreen";
 import WantedScreen from "../screens/WantedScreen";
-import {createBottomTabNavigator} from "react-navigation-tabs";
+import {createMaterialTopTabNavigator} from "react-navigation-tabs";
+import {Icon} from "react-native-elements";
 
 const MyLibraryStack = createStackNavigator(
     {
@@ -14,23 +13,25 @@ const MyLibraryStack = createStackNavigator(
 );
 
 MyLibraryStack.navigationOptions = {
+    swipeEnabled : false,
     tabBarLabel: 'Library',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}/>
+    tabBarIcon: ({focused})  => (
+        focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
     ),
 };
 
 
 const WantedStack = createStackNavigator(
     {
-        Offers: WantedScreen,
+        Wanted: WantedScreen,
     },
 );
 
 WantedStack.navigationOptions = {
+    swipeEnabled : false,
     tabBarLabel: 'Wanted',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}/>
+    tabBarIcon: ({focused})  => (
+        focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
     ),
 };
 
@@ -42,19 +43,38 @@ const OffersStack = createStackNavigator(
 );
 
 OffersStack.navigationOptions = {
+    swipeEnabled : false,
     tabBarLabel: 'Offers',
-    tabBarIcon: ({focused}) => (
-        <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}/>
+    tabBarIcon: ({focused})  => (
+        focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
     ),
+    tabBarOnPress: ({navigation}) => navigation.navigate("Offers")
 };
 
 
-const innerTabNavigator = createBottomTabNavigator({
+const innerTabNavigator = createMaterialTopTabNavigator ({
         MyLibraryStack,
         WantedStack,
         OffersStack,
-    }, {
-        swipeEnabled: true,
+    },
+    {
+        swipeEnabled: false,
+        tabBarPosition: 'bottom',
+        lazy: true,
+        animationEnabled: false,
+        tabBarOptions: {
+            inactiveTintColor:'#525257',
+            showIcon: true,
+            labelStyle: {
+                textTransform: "lowercase",
+            },
+            indicatorStyle: {
+                backgroundColor:'#517fa4'
+            },
+            tabStyle: {
+                backgroundColor:'#517fa4'
+            }
+        }
     }
 );
 
