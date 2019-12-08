@@ -4,8 +4,8 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import LibraryListItem from "./LibraryListItem";
 import {Icon} from "react-native-elements";
 
-const LibraryListComponent = ({data, deleteBook}) => {
-    return(
+const LibraryListComponent = ({data, deleteBook, showPrice}) => {
+    return (
         <SwipeListView
             data={data}
             keyExtractor={item => item._id}
@@ -13,7 +13,8 @@ const LibraryListComponent = ({data, deleteBook}) => {
                 <View
                     onPress={() => console.log('You touched ' + item.writer)}
                     style={styles.rowFront}>
-                    <LibraryListItem book={item}/>
+                    <LibraryListItem price={showPrice}
+                                     book={item}/>
                 </View>
             )}
             renderHiddenItem={({item}) => (

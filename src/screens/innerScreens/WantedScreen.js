@@ -8,7 +8,7 @@ import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 
 const WantedScreen = ({navigation}) => {
 
-    const {state : {wanted}, fetchWantedBooks, deleteWantedBook} = useContext(Context);
+    const {state: {wanted}, fetchWantedBooks, deleteWantedBook} = useContext(Context);
 
     useEffect(() => {
         console.info("WantedScreen: useEffect function");
@@ -21,6 +21,7 @@ const WantedScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <LibraryListComponent
+                showPrice={true}
                 data={wanted}
                 deleteBook={deleteWantedBook}
             />

@@ -24,6 +24,7 @@ const MyLibraryScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <LibraryListComponent
+                showPrice={false}
                 data={my}
                 deleteBook={deleteMyBook}
             />

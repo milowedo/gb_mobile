@@ -1,10 +1,11 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 
-const LibraryListItem = ({book}) => {
+const LibraryListItem = ({book, price}) => {
+
     return (
-        <>
-            <View>
+        <View style={{flexDirection: 'row'}}>
+            <View style={styles.bookInfo}>
                 <Text style={styles.titleStyle}>
                     {book.title}
                 </Text>
@@ -13,8 +14,14 @@ const LibraryListItem = ({book}) => {
                     {book.writer}
                 </Text>
             </View>
-
-        </>
+            {price ?
+                <View style={styles.priceStyle}>
+                    <Text style>
+                        11 zł
+                    </Text>
+                </View>
+                : null}
+        </View>
     );
 };
 
@@ -28,6 +35,8 @@ const styles = StyleSheet.create(
         },
         writerStyle: {
             fontSize: 14
-        }
+        },
+        bookInfo: {},
+        priceStyle: {}
     }
 );
