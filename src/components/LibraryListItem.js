@@ -1,16 +1,19 @@
 import React from "react";
-import {StyleSheet, Text} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 
 const LibraryListItem = ({book}) => {
     return (
         <>
-            <Text style={styles.titleStyle}>
-                {book.title}
-            </Text>
+            <View>
+                <Text style={styles.titleStyle}>
+                    {book.title}
+                </Text>
 
-            <Text style={styles.writerStyle}>
-                {book.writer}
-            </Text>
+                <Text style={styles.writerStyle}>
+                    {book.writer}
+                </Text>
+            </View>
+
         </>
     );
 };

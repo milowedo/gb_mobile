@@ -1,14 +1,47 @@
-import React from 'react';
-import {ExpoConfigView} from '@expo/samples';
+import React, {useContext} from 'react';
+import {Button, Icon, Text} from "react-native-elements";
+import {headerStyles} from "../constants/Layouts";
+import {navigate} from "../utils/navigationHelper";
+import {StyleSheet} from "react-native";
+import SpacingViewComponent from "../components/SpacingViewComponent";
+import {Context} from "../context/AuthenticationContext";
 
-export default function SettingsScreen() {
-    /**
-     * Go ahead and delete ExpoConfigView and replace it with your content;
-     * we just wanted to give you a quick view of your config.
-     */
-    return <ExpoConfigView/>;
-}
+
+const SettingsScreen = ({navigation}) => {
+    const {signout} = useContext(Context);
+
+    return (
+        <>
+            <Text h2 >Woah settings screen</Text>
+            <SpacingViewComponent>
+                <Button title={"Sign out"} onPress={signout}/>
+            </SpacingViewComponent>
+        </>
+    )
+};
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'white',
+        flex: 1,
+    }
+});
 
 SettingsScreen.navigationOptions = {
-    title: 'app.json',
+    headerTitle: 'Settings',
+    headerStyle: headerStyles.headerStyle,
+    headerTitleStyle: headerStyles.headerTitleStyle,
+    headerRight: () => (
+        <Icon
+            name="home"
+            color="white"
+            onPress={
+                () => {
+                    navigate("Back", {current: "Settings"})
+                }
+            }
+        />
+    ),
 };
+
+export default SettingsScreen;

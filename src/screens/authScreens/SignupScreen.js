@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {View} from "react-native";
-import AuthForm from "../components/AuthForm";
-import NavLink from "../components/NavLink";
+import AuthForm from "../../components/AuthForm";
+import NavLink from "../../components/NavLink";
 import {NavigationEvents} from "react-navigation";
-import {signingStyles as styles} from "../constants/Layouts"
-import {Context as AuthContext} from "../context/AuthenticationContext";
+import {signingStyles as styles} from "../../constants/Layouts"
+import {Context as AuthContext} from "../../context/AuthenticationContext";
 
 
 const SignupScreen = () => {

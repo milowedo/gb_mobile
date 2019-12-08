@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
-import MyLibraryScreen from "../screens/MyLibraryScreen";
-import OffersScreen from "../screens/OffersScreen";
-import WantedScreen from "../screens/WantedScreen";
+import MyLibraryScreen from "../screens/innerScreens/MyLibraryScreen";
+import OffersScreen from "../screens/innerScreens/OffersScreen";
+import WantedScreen from "../screens/innerScreens/WantedScreen";
 import {createBottomTabNavigator} from "react-navigation-tabs";
 import {Icon} from "react-native-elements";
 import {Dimensions} from "react-native";
@@ -65,19 +65,20 @@ const innerTabNavigator = createBottomTabNavigator({
         // swipe works with createMaterialTopTabNavigator
         // swipeEnabled: true,
         tabBarPosition: 'bottom',
+        initialRouteName: 'Wanted',
         lazy: true,
         animationEnabled: false,
         tabBarOptions: {
             style: {
                 height: 60,
+                justifyContent: 'center'
             },
             inactiveTintColor: '#525257',
             activeTintColor: 'white',
             showIcon: true,
             labelStyle: {
                 textTransform: "lowercase",
-                paddingBottom: 10,
-                marginTop: 0,
+                paddingBottom: 5,
             },
             indicatorStyle: {
                 backgroundColor: '#517fa4'

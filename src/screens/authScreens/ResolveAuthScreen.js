@@ -1,5 +1,5 @@
 import {useContext, useEffect} from "react";
-import {Context} from "../context/AuthenticationContext";
+import {Context} from "../../context/AuthenticationContext";
 
 
 export default () => {

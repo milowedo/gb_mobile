@@ -1,9 +1,10 @@
 import React, {useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Context} from "../context/BooksContext";
-import LibraryListComponent from "../components/LibraryListComponent";
+import {Context} from "../../context/BooksContext";
+import LibraryListComponent from "../../components/LibraryListComponent";
 import {withNavigation} from "@react-navigation/core/src";
-import {headerStyles} from "../constants/Layouts";
+import {headerStyles} from "../../constants/Layouts";
+import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 
 const WantedScreen = ({navigation}) => {
 
@@ -31,7 +32,8 @@ const WantedScreen = ({navigation}) => {
 WantedScreen.navigationOptions = {
     title: 'Wanted',
     headerStyle: headerStyles.headerStyle,
-    headerTitleStyle: headerStyles.headerTitleStyle
+    headerTitleStyle: headerStyles.headerTitleStyle,
+    headerRight: settingsLinkIcon,
 };
 
 const styles = StyleSheet.create({

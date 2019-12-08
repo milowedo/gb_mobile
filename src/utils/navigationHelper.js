@@ -8,10 +8,13 @@ export const setNavigator = (nav) => {
 
 
 export const navigate = (routeName, params) => {
-    console.info("navigationHelper: navigating to " + routeName);
-    navigator.dispatch(
-        NavigationActions.navigate({
+    let action;
+    if (routeName === "Back") {
+        action = NavigationActions.back({key: params["current"]});
+    } else {
+        action = NavigationActions.navigate({
             routeName, params
-        })
-    )
+        });
+    }
+    navigator.dispatch(action);
 };

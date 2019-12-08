@@ -1,14 +1,16 @@
 import React, {useContext, useEffect} from 'react'
 import {View, StyleSheet} from "react-native";
-import NavigationEvents from "@react-navigation/core/src/views/NavigationEvents";
-import {Context} from "../context/BooksContext";
-import LibraryListComponent from "../components/LibraryListComponent";
-import {headerStyles} from "../constants/Layouts";
+import {Context} from "../../context/BooksContext";
+import LibraryListComponent from "../../components/LibraryListComponent";
+import {headerStyles} from "../../constants/Layouts";
+import {Icon} from "react-native-elements";
+import {navigate} from "../../utils/navigationHelper";
+import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 
 
 const MyLibraryScreen = ({navigation}) => {
 
-    const {state : {my}, fetchMyBooks, deleteMyBook} = useContext(Context);
+    const {state: {my}, fetchMyBooks, deleteMyBook} = useContext(Context);
 
     useEffect(() => {
         console.info("MyLibraryScreen: useEffect function");
@@ -28,10 +30,12 @@ const MyLibraryScreen = ({navigation}) => {
         </View>
     );
 };
+
 MyLibraryScreen.navigationOptions = {
-    title: 'My library',
+    headerTitle: 'My library',
     headerStyle: headerStyles.headerStyle,
-    headerTitleStyle: headerStyles.headerTitleStyle
+    headerTitleStyle: headerStyles.headerTitleStyle,
+    headerRight: settingsLinkIcon,
 };
 
 const styles = StyleSheet.create({
