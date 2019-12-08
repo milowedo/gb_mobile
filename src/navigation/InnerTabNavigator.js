@@ -5,21 +5,18 @@ import OffersScreen from "../screens/OffersScreen";
 import WantedScreen from "../screens/WantedScreen";
 import {createMaterialTopTabNavigator} from "react-navigation-tabs";
 import {Icon} from "react-native-elements";
+import {Dimensions} from "react-native";
+
+const initialLayout = {
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+};
 
 const MyLibraryStack = createStackNavigator(
     {
         Library: MyLibraryScreen,
-    }
+    },
 );
-
-MyLibraryStack.navigationOptions = {
-    swipeEnabled : false,
-    tabBarLabel: 'Library',
-    tabBarIcon: ({focused})  => (
-        focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
-    ),
-};
-
 
 const WantedStack = createStackNavigator(
     {
@@ -27,20 +24,30 @@ const WantedStack = createStackNavigator(
     },
 );
 
+const OffersStack = createStackNavigator(
+    {
+        Offers: OffersScreen,
+    },
+);
+
+
+MyLibraryStack.navigationOptions = {
+    swipeEnabled : false,
+    tabBarLabel: 'Library',
+    tabBarIcon: ({focused})  => (
+        focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
+    ),
+    tabBarOnPress: ({navigation}) => navigation.navigate("Library")
+};
+
 WantedStack.navigationOptions = {
     swipeEnabled : false,
     tabBarLabel: 'Wanted',
     tabBarIcon: ({focused})  => (
         focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
     ),
+    tabBarOnPress: ({navigation}) => navigation.navigate("Wanted")
 };
-
-
-const OffersStack = createStackNavigator(
-    {
-        Offers: OffersScreen,
-    },
-);
 
 OffersStack.navigationOptions = {
     swipeEnabled : false,
@@ -48,9 +55,10 @@ OffersStack.navigationOptions = {
     tabBarIcon: ({focused})  => (
         focused ? <Icon name="home" color="white"/> : <Icon name="home" color="#525257"/>
     ),
-    tabBarOnPress: ({navigation}) => navigation.navigate("Offers")
+    tabBarOnPress: ({navigation}) => {
+        navigation.navigate("Offers")
+    }
 };
-
 
 const innerTabNavigator = createMaterialTopTabNavigator ({
         MyLibraryStack,
@@ -58,10 +66,11 @@ const innerTabNavigator = createMaterialTopTabNavigator ({
         OffersStack,
     },
     {
+        initialLayout,
         swipeEnabled: false,
         tabBarPosition: 'bottom',
         lazy: true,
-        animationEnabled: false,
+        animationEnabled: true,
         tabBarOptions: {
             inactiveTintColor:'#525257',
             showIcon: true,

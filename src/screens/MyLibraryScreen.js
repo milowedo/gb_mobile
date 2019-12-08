@@ -10,10 +10,10 @@ const MyLibraryScreen = ({navigation}) => {
     const {state : {my}, fetchMyBooks, deleteMyBook} = useContext(Context);
 
     useEffect(() => {
-        console.log("Library first time");
+        console.info("MyLibraryScreen: useEffect function");
         fetchMyBooks();
         return () => {
-            console.log("leaving");
+            console.info("MyLibraryScreen: useEffect return");
         }
     }, []);
 

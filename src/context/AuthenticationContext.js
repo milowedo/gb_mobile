@@ -5,7 +5,7 @@ import AbstractDataContext from "./AbstractDataContext";
 const authService = "https://evening-shelf-19061.herokuapp.com";
 
 const authenticationReducer = (state, action) => {
-    console.log("AuthenticationContext : " + action.type);
+    console.info("AuthenticationContext reducer, type: " + action.type);
     switch (action.type) {
         case 'add_error':
             return {...state, errorMessage: action.payload};
@@ -41,7 +41,7 @@ const signup = (dispatch) => async ({email, password}) => {
         dispatch({type: "signin", payload: responseObject.token});
         navigate('AppFlow');
     } catch (e) {
-        console.log(e.stackTrace);
+        console.error("AuthenticationContext signup: ", e.stackTrace);
         dispatch({type: 'add_error', payload: "Something went wrong with sign up"})
     }
 };
@@ -67,7 +67,7 @@ const signin = (dispatch) => async ({email, password}) => {
         dispatch({type: "signin", payload: responseObject.token});
         navigate('AppFlow');
     } catch (e) {
-        console.log(e);
+        console.error("AuthenticationContext signin" , e.stackTrace);
         dispatch({type: 'add_error', payload: "Something went wrong with sign in"})
     }
 };

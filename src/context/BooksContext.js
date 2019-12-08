@@ -42,13 +42,12 @@ const myBooks = [
 const booksReducer = (state, action) => {
     switch (action.type) {
         case 'get_my_books':
-            console.log("my lib");
+            console.info("BooksContext reducer: returning my lib");
             return {...state, my: action.payload};
         case 'delete_my_book':
-            console.log(state);
             return {...state, my: state.my.filter((element) => element._id !== action.payload)};
         case 'get_wanted_books':
-            console.log("wanted");
+            console.info("BooksContext reducer: returning wanted");
             return {...state, wanted: action.payload};
         case 'delete_wanted_book':
             return {...state, wanted: state.wanted.filter((element) => element._id !== action.payload)};

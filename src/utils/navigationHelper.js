@@ -8,7 +8,7 @@ export const setNavigator = (nav) => {
 
 
 export const navigate = (routeName, params) => {
-    console.log("navigationHelper: navigating to " + routeName);
+    console.info("navigationHelper: navigating to " + routeName);
     navigator.dispatch(
         NavigationActions.navigate({
             routeName, params

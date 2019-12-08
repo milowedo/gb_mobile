@@ -9,8 +9,11 @@ const WantedScreen = ({navigation}) => {
     const {state : {wanted}, fetchWantedBooks, deleteWantedBook} = useContext(Context);
 
     useEffect(() => {
-        console.log("Wanted first time");
+        console.info("WantedScreen: useEffect function");
         fetchWantedBooks();
+        return () => {
+            console.info("WantedScreen: useEffect return");
+        }
     }, []);
 
     return (
