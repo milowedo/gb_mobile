@@ -1,5 +1,6 @@
 import React from 'react'
 import {Text, View} from "react-native";
+import {headerStyles} from "../constants/Layouts";
 
 
 const OffersScreen = () => {
@@ -12,6 +13,8 @@ const OffersScreen = () => {
 
 OffersScreen.navigationOptions = {
     title: 'Offers',
+    headerStyle: headerStyles.headerStyle,
+    headerTitleStyle: headerStyles.headerTitleStyle
 };
 
 export default OffersScreen;

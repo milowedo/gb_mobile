@@ -3,6 +3,7 @@ import {View, StyleSheet} from "react-native";
 import NavigationEvents from "@react-navigation/core/src/views/NavigationEvents";
 import {Context} from "../context/BooksContext";
 import LibraryListComponent from "../components/LibraryListComponent";
+import {headerStyles} from "../constants/Layouts";
 
 
 const MyLibraryScreen = ({navigation}) => {
@@ -27,24 +28,15 @@ const MyLibraryScreen = ({navigation}) => {
         </View>
     );
 };
-
-
 MyLibraryScreen.navigationOptions = {
     title: 'My library',
-    headerStyle: {
-        backgroundColor: '#517fa4',
-        height: 100,
-    },
-    headerTitleStyle: {
-        color: 'white'
-    }
+    headerStyle: headerStyles.headerStyle,
+    headerTitleStyle: headerStyles.headerTitleStyle
 };
-
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        paddingTop: 5,
         flex: 1,
     }
 });

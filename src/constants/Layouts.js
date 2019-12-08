@@ -30,20 +30,30 @@ export const signingStyles = StyleSheet.create({
     },
     input: {
         marginBottom: 10,
-        paddingHorizontal:10,
+        paddingHorizontal: 10,
 
     },
     inputIcons: {
         marginRight: 20
     },
     inputLabel: {
-        paddingHorizontal:10,
+        paddingHorizontal: 10,
         color: '#517fa4',
     },
     submitButton: {
         backgroundColor: '#517fa4',
         width: '80%',
         alignSelf: "center",
+    }
+});
+
+export const headerStyles = StyleSheet.create({
+    headerStyle: {
+        backgroundColor: '#517fa4',
+        height: 90,
+    },
+    headerTitleStyle: {
+        color: 'white'
     }
 });
 

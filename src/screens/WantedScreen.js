@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Context} from "../context/BooksContext";
 import LibraryListComponent from "../components/LibraryListComponent";
 import {withNavigation} from "@react-navigation/core/src";
+import {headerStyles} from "../constants/Layouts";
 
 const WantedScreen = ({navigation}) => {
 
@@ -29,19 +30,13 @@ const WantedScreen = ({navigation}) => {
 
 WantedScreen.navigationOptions = {
     title: 'Wanted',
-    headerStyle: {
-        backgroundColor: '#517fa4',
-        height: 100,
-    },
-    headerTitleStyle: {
-        color: 'white'
-    }
+    headerStyle: headerStyles.headerStyle,
+    headerTitleStyle: headerStyles.headerTitleStyle
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 5,
         backgroundColor: '#fff',
     },
 });
