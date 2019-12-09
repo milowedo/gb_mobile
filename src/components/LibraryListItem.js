@@ -6,9 +6,6 @@ const LibraryListItem = ({book, price}) => {
     return (
         <View style={styles.container}>
             <View
-                onLongPress={() => {
-                    alert("pressed it long")
-                }}
                 style={price ? styles.bookInfoWithPrice : styles.bookInfoWithoutPrice}>
                 <Text style={styles.titleStyle}>
                     {book.title}
@@ -69,8 +66,7 @@ const styles = StyleSheet.create(
         priceInputStyle: {
             textAlign: 'right',
             paddingVertical: 5,
-            paddingRight: 10,
-            paddingLeft: 5,
+            paddingRight: 2,
         }
     }
 );
