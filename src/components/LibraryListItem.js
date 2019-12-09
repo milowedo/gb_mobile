@@ -45,8 +45,6 @@ export default LibraryListItem;
 const styles = StyleSheet.create(
     {
         container: {
-            borderWidth: 1,
-            borderColor: 'red',
             flexDirection: 'row',
             justifyContent: 'space-between'
 
@@ -60,27 +58,19 @@ const styles = StyleSheet.create(
         },
         bookInfoWithPrice: {
             width: '80%',
-            borderWidth: 1,
-            borderColor: 'purple',
         },
         bookInfoWithoutPrice: {
             width: '80%',
-            borderWidth: 1,
-            borderColor: 'purple',
         },
         priceStyle: {
             alignItems: 'center',
             flexDirection: 'row',
-            borderWidth: 1,
-            borderColor: 'black',
         },
         priceInputStyle: {
             textAlign: 'right',
             paddingVertical: 5,
             paddingRight: 10,
             paddingLeft: 5,
-            borderWidth: 1,
-            borderColor: 'green',
         }
     }
 );
