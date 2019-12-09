@@ -2,17 +2,24 @@ import React from "react";
 import AbstractDataContext from "./AbstractDataContext";
 
 const wantedBooks = [
-    {_id: "0", writer: "Kurt Vonnegut", title: "Breakfast of Champions"},
-    {_id: "1", writer: "Truman Capote", title: "Z zimną krwią"},
-    {_id: "2", writer: "Philip Kindred Dick", title: "Valis"},
-    {_id: "3", writer: "J. Sartre", title: "Słowa"},
-    {_id: "4", writer: "Janusz Zajdel", title: "Prawo do powrotu"},
-    {_id: "5", writer: "Pratchett", title: "Kolor magii"},
-    {_id: "6", writer: "Tolkien", title: "Silmarilion"},
-    {_id: "7", writer: "Michał Bułhakov", title: "Mistrz i Małgorzata"},
-    {_id: "8", writer: "Ernest Hemingway", title: "Słońce też wschodzi"},
-    {_id: "9", writer: "Nietzsche", title: "Ecce homo"},
-    {_id: "10", writer: "Andrzej Sapkowski", title: "Krew Elfów"},
+    {_id: "0", writer: "Kurt Vonnegut", title: "Breakfast of Champions", price: 37},
+    {_id: "1", writer: "Truman Capote", title: "Z zimną krwią", price: 55},
+    {_id: "2", writer: "Philip Kindred Dick", title: "Valis", price: 12},
+    {_id: "3", writer: "J. Sartre", title: "Słowa", price: 1},
+    {_id: "4", writer: "Janusz Zajdel", title: "Prawo do powrotu", price: 99},
+    {_id: "5", writer: "Pratchett", title: "Kolor magii", price: 6},
+    {_id: "6", writer: "Tolkien", title: "Silmarilion", price: 9},
+    {_id: "7", writer: "Michał Bułhakov", title: "Mistrz i Małgorzata", price: 3},
+    {_id: "8", writer: "Ernest Hemingway", title: "Słońce też wschodzi", price: 39},
+    {_id: "9", writer: "Nietzsche", title: "Ecce homo", price: 44},
+    {_id: "10", writer: "Andrzej Sapkowski", title: "Krew Elfów", price: 1},
+
+    {
+        _id: "11",
+        writer: "Alexandra Elizabeth Sheedy",
+        title: "She Was Nice To Mice: The Other Side of Elizabeth I's Character Never Before Revealed by Previous Historians",
+        price: 32
+    },
 ];
 const myBooks = [
     {_id: "0", writer: "Kurt Vonnegut", title: "Slaughterhouse no 5"},
@@ -32,11 +39,6 @@ const myBooks = [
     {_id: "10", writer: "Norman Davies", title: "Boże igrzysko"},
     {_id: "11", writer: "Jaume Cabré", title: "Głosy panamo"},
     {_id: "12", writer: "Jaume Cabré", title: "Wyznaję"},
-    {
-        _id: "13",
-        writer: "Alexandra Elizabeth Sheedy",
-        title: "She Was Nice To Mice: The Other Side of Elizabeth I's Character Never Before Revealed by Previous Historians"
-    },
 ];
 
 const booksReducer = (state, action) => {

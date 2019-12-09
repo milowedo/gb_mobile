@@ -10,17 +10,19 @@ const LibraryListComponent = ({data, deleteBook, showPrice}) => {
             data={data}
             keyExtractor={item => item._id}
             renderItem={({item}) => (
-                <View
+                <TouchableOpacity
+                    activeOpacity={1}
                     onPress={() => console.log('You touched ' + item.writer)}
                     style={styles.rowFront}>
                     <LibraryListItem price={showPrice}
                                      book={item}/>
-                </View>
+                </TouchableOpacity>
             )}
             renderHiddenItem={({item}) => (
                 <View style={styles.rowBack}>
 
-                    <TouchableOpacity onPress={null}>
+                    <TouchableOpacity
+                        onPress={null}>
                         <Icon
                             name='sc-telegram'
                             type='evilicon'
@@ -50,11 +52,12 @@ const LibraryListComponent = ({data, deleteBook, showPrice}) => {
             )}
             leftOpenValue={60}
             rightOpenValue={-70}
+
             previewRowKey={'3'}
             previewOpenValue={-70}
             previewOpenDelay={1000}
-            onRowDidOpen={this.onRowDidOpen}
-            onSwipeValueChange={this.onSwipeValueChange}
+
+            closeOnRowPress
         />
     )
 };
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#CCC',
         borderBottomWidth: 1,
         justifyContent: 'center',
-        height: 80,
+        paddingVertical: 15,
         paddingHorizontal: 15
     },
     rowBack: {
