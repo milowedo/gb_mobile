@@ -7,6 +7,7 @@ import {Icon} from "react-native-elements";
 const LibraryListComponent = ({data, deleteBook, showPrice}) => {
     return (
         <SwipeListView
+            showsVerticalScrollIndicator={false}
             data={data}
             keyExtractor={item => item._id}
             renderItem={({item}) => (
@@ -56,6 +57,14 @@ const LibraryListComponent = ({data, deleteBook, showPrice}) => {
             previewRowKey={'3'}
             previewOpenValue={-70}
             previewOpenDelay={1000}
+
+            onRowDidOpen={ (rowKey, rowMap) => {
+                new Promise(() => {
+                    setTimeout(()=>{
+                        rowMap[rowKey]? rowMap[rowKey].closeRow() : null;
+                    }, 5000)
+                }).then();
+            }}
 
             closeOnRowPress
         />
