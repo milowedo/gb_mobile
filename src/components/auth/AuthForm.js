@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import SpacingViewComponent from "./SpacingViewComponent";
+import MarginWrapper from "../utilities/MarginWrapper";
 import {Button, Icon, Input, Text} from "react-native-elements";
-import {signingStyles as styles} from "../constants/Layouts"
+import {signingStyles as styles} from "../../constants/Layouts"
 
 const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle}) => {
     const [email, setEmail] = useState('');
@@ -9,9 +9,9 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
 
     return (
         <>
-            <SpacingViewComponent margin={30}>
+            <MarginWrapper margin={30}>
                 <Text h2>{headerText}</Text>
-            </SpacingViewComponent>
+            </MarginWrapper>
             <Input
                 inputContainerStyle={styles.input}
                 placeholder={"maya@gmail.com"}
@@ -52,14 +52,14 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
                 autoCorrect={false}
             />
             {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
-            <SpacingViewComponent margin={20}>
+            <MarginWrapper margin={20}>
                 <Button
                     buttonStyle={styles.submitButton}
                     onPress={() => {
                         callbackOnSubmit({email, password});
                     }}
                     title={submitButtonTitle}/>
-            </SpacingViewComponent>
+            </MarginWrapper>
         </>
     )
 };

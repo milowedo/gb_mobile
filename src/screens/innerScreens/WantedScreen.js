@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Context} from "../../context/BooksContext";
-import LibraryListComponent from "../../components/LibraryListComponent";
+import LibraryListComponent from "../../components/lists/LibraryListComponent";
 import {withNavigation} from "@react-navigation/core/src";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";

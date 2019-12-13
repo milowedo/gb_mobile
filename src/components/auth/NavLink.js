@@ -1,5 +1,5 @@
 import {StyleSheet, TouchableOpacity} from "react-native";
-import SpacingViewComponent from "./SpacingViewComponent";
+import MarginWrapper from "../utilities/MarginWrapper";
 import {Text} from "react-native-elements";
 import React from "react";
 import {withNavigation} from "react-navigation";
@@ -8,9 +8,9 @@ import {withNavigation} from "react-navigation";
 const NavLink = ({navigation, text, routeName, containerStyle}) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate({routeName})} style={containerStyle}>
-            <SpacingViewComponent>
+            <MarginWrapper>
                 <Text style={styles.navLink}>{text}</Text>
-            </SpacingViewComponent>
+            </MarginWrapper>
         </TouchableOpacity>
     );
 };

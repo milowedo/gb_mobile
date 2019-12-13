@@ -3,7 +3,7 @@ import {View} from 'react-native';
 
 const DEFAULT_MARGIN = 15;
 
-const SpacingViewComponent = ({margin, children}) => {
+const MarginWrapper = ({margin, children}) => {
     return (
         <View
             style = {{margin: margin ? margin : DEFAULT_MARGIN}}>
@@ -12,4 +12,4 @@ const SpacingViewComponent = ({margin, children}) => {
     )
 };
 
-export default SpacingViewComponent;
+export default MarginWrapper;

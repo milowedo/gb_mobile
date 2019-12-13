@@ -4,7 +4,7 @@ import {
     Text, TouchableOpacity, View,
 } from 'react-native';
 
-import {MonoText} from '../components/StyledText';
+import {MonoText} from '../components/utilities/StyledText';
 
 export default function WelcomeScreen({navigation}) {
     return (
