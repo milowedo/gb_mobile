@@ -2,16 +2,22 @@ import 'react-native-gesture-handler'
 import {AppLoading} from 'expo';
 import {Asset} from 'expo-asset';
 import * as Font from 'expo-font';
-import React, {useState} from 'react';
-import {Platform, StatusBar, StyleSheet, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import AppNavigator from './src/navigation/AppSwitchNavigator';
 import {setNavigator} from "./src/utils/navigationHelper";
 import {Provider as AuthenticationProvider} from './src/context/AuthenticationContext'
 import {Provider as BooksProvider} from './src/context/BooksContext'
 
+const authService = "https://evening-shelf-19061.herokuapp.com";
+
 export default function App(props) {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
+
+    useEffect(() => {
+        backend_heart_beat().then()
+    }, []);
 
     if (!isLoadingComplete && !props.skipLoadingScreen) {
         return (
@@ -24,7 +30,6 @@ export default function App(props) {
     } else {
         return (
             <View style={styles.container}>
-                {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
                 <BooksProvider>
                     <AuthenticationProvider>
                         <AppNavigator ref={setNavigator}/>
@@ -52,13 +57,29 @@ async function loadResourcesAsync() {
 }
 
 function handleLoadingError(error) {
-
     console.warn(error);
 }
 
 function handleFinishLoading(setLoadingComplete) {
     setLoadingComplete(true);
 }
+
+const backend_heart_beat = async () => {
+    try {
+        const response = await fetch(`${authService}/beat`, {
+                method: 'GET',
+                headers: {
+                    "content-type": 'application/json'
+                },
+            }
+        );
+        if (!response.ok) {
+            throw new Error("Problem with backend occured");
+        }
+    } catch (e) {
+        console.error(e.stackTrace);
+    }
+};
 
 const styles = StyleSheet.create({
     container: {
