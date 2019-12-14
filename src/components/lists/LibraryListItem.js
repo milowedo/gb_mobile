@@ -17,20 +17,25 @@ const LibraryListItem = ({book, price}) => {
             </View>
             {price ?
                 <View style={libraryStyles.priceStyle}>
-                    <Text>
+                    <Text
+                        style={libraryStyles.priceStyle_top}>
                         {"max"}
                     </Text>
-                    <TextInput
-                        style={libraryStyles.priceInputStyle}
-                        keyboardType={"numeric"}
-                        maxLength={2}
-                        onBlur={() => console.log("TODO change books price")}
-                    >
-                        {book.price}
-                    </TextInput>
-                    <Text>
-                        {"pln"}
-                    </Text>
+                    <View style={libraryStyles.priceStyle_bottom}>
+                        <TextInput
+                            selectTextOnFocus
+                            style={libraryStyles.priceInputStyle}
+                            keyboardType={"numeric"}
+                            maxLength={2}
+                            onBlur={() => console.log("TODO change books price")}
+                        >
+                            {book.price}
+                        </TextInput>
+                        <Text
+                            style={libraryStyles.priceCurrencyStyle}>
+                            {"pln"}
+                        </Text>
+                    </View>
                 </View>
                 : null}
         </View>
@@ -60,13 +65,24 @@ export const libraryStyles = StyleSheet.create(
             width: '80%',
         },
         priceStyle: {
+            paddingRight: 15,
             alignItems: 'center',
+            justifyContent: 'center'
+        },
+        priceStyle_top: {
+            height: 16,
+        },
+        priceStyle_bottom: {
+            paddingRight: 6,
             flexDirection: 'row',
+            alignItems: 'flex-start'
         },
         priceInputStyle: {
-            textAlign: 'right',
-            paddingVertical: 5,
-            paddingRight: 2,
-        }
+            textAlign: 'center',
+
+        },
+        priceCurrencyStyle: {
+            alignSelf: 'center'
+        },
     }
 );
