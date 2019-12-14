@@ -4,24 +4,24 @@ import {StyleSheet, Text, TextInput, View} from "react-native";
 const LibraryListItem = ({book, price}) => {
 
     return (
-        <View style={styles.container}>
+        <View style={libraryStyles.container}>
             <View
-                style={price ? styles.bookInfoWithPrice : styles.bookInfoWithoutPrice}>
-                <Text style={styles.titleStyle}>
+                style={price ? libraryStyles.bookInfoWithPrice : libraryStyles.bookInfoWithoutPrice}>
+                <Text style={libraryStyles.titleStyle}>
                     {book.title}
                 </Text>
 
-                <Text style={styles.writerStyle}>
+                <Text style={libraryStyles.writerStyle}>
                     {book.writer}
                 </Text>
             </View>
             {price ?
-                <View style={styles.priceStyle}>
+                <View style={libraryStyles.priceStyle}>
                     <Text>
                         {"max"}
                     </Text>
                     <TextInput
-                        style={styles.priceInputStyle}
+                        style={libraryStyles.priceInputStyle}
                         keyboardType={"numeric"}
                         maxLength={2}
                         onBlur={() => console.log("TODO change books price")}
@@ -39,7 +39,7 @@ const LibraryListItem = ({book, price}) => {
 
 export default LibraryListItem;
 
-const styles = StyleSheet.create(
+export const libraryStyles = StyleSheet.create(
     {
         container: {
             flexDirection: 'row',
