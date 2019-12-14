@@ -7,6 +7,8 @@ const AuthStackNavigator = createStackNavigator(
     {
         Signin: SigninScreen,
         Signup: SignupScreen
+    },{
+        initialRouteName: 'Signin'
     }
 );
 
