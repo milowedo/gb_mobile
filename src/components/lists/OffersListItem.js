@@ -32,7 +32,7 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
                                 <Text style={libraryStyles.writerStyle}>{item.writer}</Text>
                             </View>
                             <View style={offerStyles.bookRowPriceChild}>
-                                <Text style={offerStyles.priceStyle}>{item.price}</Text>
+                                <Text style={offerStyles.priceStyle}>{item.price} pln</Text>
                             </View>
                         </View>
                     )
@@ -69,37 +69,31 @@ const offerStyles = StyleSheet.create(
         },
         listElementStyle: {
             flexDirection: 'row',
+            alignItems: 'center',
             borderTopWidth: 1,
-            borderColor: '#525257'
+            borderColor: '#525257',
         },
         bookRowImageChild: {
             alignSelf: 'center',
             width: 50,
-            // borderWidth: 1,
-            // borderColor: 'red'
         },
         bookRowTextChild: {
             width: '65%',
             paddingLeft: 15,
-            // borderWidth: 1,
-            // borderColor: 'green'
         },
         bookRowPriceChild: {
-            alignSelf: 'flex-end',
-            borderWidth: 1,
-            borderColor: 'pink'
+            width: 55,
         },
         priceStyle: {
             padding: 5,
             fontWeight: 'bold',
-            fontSize: 18,
+            textAlign: 'right',
+            fontSize: 16,
         },
         bottomInfoStyle: {
             marginHorizontal: 8,
             flexDirection: 'row',
             justifyContent: 'space-between',
-            // borderWidth: 1,
-            // borderColor: 'blue'
         },
         bottomInfoTotalPriceStyle: {},
         bottomInfoDeliveryStyle: {}
