@@ -1,9 +1,9 @@
 import React from 'react';
 import SigninScreen from "../screens/authScreens/SigninScreen";
 import SignupScreen from "../screens/authScreens/SignupScreen";
-import {createStackNavigator} from "react-navigation-stack";
+import createSwitchNavigator from "@react-navigation/core/lib/commonjs/navigators/createSwitchNavigator";
 
-const AuthStackNavigator = createStackNavigator(
+const AuthStackNavigator = createSwitchNavigator(
     {
         Signin: SigninScreen,
         Signup: SignupScreen
