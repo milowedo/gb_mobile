@@ -62,10 +62,14 @@ const innerTabNavigator = createBottomTabNavigator({
     },
     {
         initialLayout: initialLayout,
+        // INFO
         // swipe works with createMaterialTopTabNavigator
         // swipeEnabled: true,
         tabBarPosition: 'bottom',
-        initialRouteName: 'Wanted',
+        // TODO for offers development
+        // initialRouteName: 'Wanted',
+        initialRouteName: 'Offers',
+        //TODO remove after
         lazy: true,
         animationEnabled: false,
         tabBarOptions: {

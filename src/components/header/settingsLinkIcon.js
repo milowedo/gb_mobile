@@ -4,6 +4,8 @@ import React from "react";
 
 const settingsIcon = () => (
     <Icon
+        size={30}
+        containerStyle={{paddingRight: 10}}
         name="home"
         color="white"
         onPress={
