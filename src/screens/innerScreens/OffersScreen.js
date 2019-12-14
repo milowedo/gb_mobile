@@ -1,5 +1,5 @@
 import React from 'react'
-import {FlatList, StyleSheet, Text, View} from "react-native";
+import {FlatList, StyleSheet, View} from "react-native";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 import {Button} from "react-native-elements";
@@ -65,7 +65,7 @@ const OffersScreen = () => {
     return (
         <>
             <View style={styles.topGroupWithButtonsStyle}>
-                <Text style={styles.filterHeaderStyle}>filter</Text>
+                {/*<Text style={styles.filterHeaderStyle}>filter</Text>*/}
                 <View style={styles.buttonsTopGroupStyle}>
                     <Button
                         containerStyle={styles.singleButtonTopStyle}
@@ -136,8 +136,6 @@ const styles = StyleSheet.create({
     },
     offersListStyle: {
         flex: 1,
-        // borderWidth: 2,
-        // borderColor: 'purple'
     }
 });
 
