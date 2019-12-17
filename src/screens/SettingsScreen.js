@@ -12,6 +12,7 @@ const SettingsScreen = ({navigation}) => {
 
     return (
         <>
+            <Text h2 >Woah settings screen</Text>
             <MarginWrapper>
                 <Button title={"Sign out"} onPress={signout}/>
             </MarginWrapper>
