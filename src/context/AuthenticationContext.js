@@ -2,7 +2,7 @@ import {AsyncStorage} from "react-native";
 import {navigate} from "../utils/navigationHelper";
 import AbstractDataContext from "./AbstractDataContext";
 
-const authService = "https://evening-shelf-19061.herokuapp.com";
+const authService = "https://gb-auth.herokuapp.com";
 
 const authenticationReducer = (state, action) => {
     console.info("AuthenticationContext reducer, type: " + action.type);

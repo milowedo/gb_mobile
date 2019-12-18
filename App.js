@@ -10,7 +10,7 @@ import {setNavigator} from "./src/utils/navigationHelper";
 import {Provider as AuthenticationProvider} from './src/context/AuthenticationContext'
 import {Provider as BooksProvider} from './src/context/BooksContext'
 
-const authService = "https://evening-shelf-19061.herokuapp.com";
+const authService = "https://gb-auth.herokuapp.com";
 
 export default function App(props) {
     const [isLoadingComplete, setLoadingComplete] = useState(false);
