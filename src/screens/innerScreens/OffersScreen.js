@@ -6,60 +6,28 @@ import {Button} from "react-native-elements";
 import OffersListItem from "../../components/lists/OffersListItem";
 
 const single = {
-    _id: "1",
-    sellerName: 'tajemniczy_ogrod',
-    books: [
-        {_id: "4", writer: "Janusz Zajdel", title: "Prawo do powrotu", price: 99},
-        {_id: "5", writer: "Pratchett", title: "Kolor magii", price: 6},
-        {_id: "6", writer: "Tolkien", title: "Silmarilion", price: 9},
-        {_id: "7", writer: "Michał Bułhakov", title: "Mistrz i Małgorzata", price: 3},
+    seller: {
+        seller_id: "13994849",
+        lowestPriceDelivery: 5.90,
+        total: 7.0
+    },
+    bookResult: [
         {
-            _id: "11",
-            writer: "Alexandra Elizabeth Sheedy",
-            title: "She Was Nice To Mice: The Other Side of Elizabeth I's Character Never Before Revealed by Previous Historians",
-            price: 32
-        }
+            auction_id: "8747192826",
+            imageUrl: [
+                {
+                    "url": "https://a.allegroimg.com/original/111cbb/bdb7cbf54249a90522c28bb367b2"
+                }
+            ],
+            auctionName: "Kurt Vonnegut - Recydywista",
+            writer: "Kurt Vonnegut",
+            bookTitle: "Recydywista",
+            priceAmount: 7.0
+        },
     ],
-    totalPrice: 84,
-    delivery: "delivery",
+    totalPrice: 0,
 };
-const single2 = {
-    _id: "2",
-    sellerName: 'tajemniczy_ogrod',
-    books: [
-        {_id: "4", writer: "Janusz Zajdel", title: "Prawo do powrotu", price: 99},
-        {_id: "5", writer: "Pratchett", title: "Kolor magii", price: 6},
-        {_id: "6", writer: "Tolkien", title: "Silmarilion", price: 9},
-        {_id: "7", writer: "Michał Bułhakov", title: "Mistrz i Małgorzata", price: 3},
-        {
-            _id: "11",
-            writer: "Alexandra Elizabeth Sheedy",
-            title: "She Was Nice To Mice: The Other Side of Elizabeth I's Character Never Before Revealed by Previous Historians",
-            price: 32
-        }
-    ],
-    totalPrice: 84,
-    delivery: "delivery",
-};
-const single3 = {
-    _id: "3",
-    sellerName: 'tajemniczy_ogrod',
-    books: [
-        {_id: "4", writer: "Janusz Zajdel", title: "Prawo do powrotu", price: 99},
-        {_id: "5", writer: "Pratchett", title: "Kolor magii", price: 6},
-        {_id: "6", writer: "Tolkien", title: "Silmarilion", price: 9},
-        {_id: "7", writer: "Michał Bułhakov", title: "Mistrz i Małgorzata", price: 3},
-        {
-            _id: "11",
-            writer: "Alexandra Elizabeth Sheedy",
-            title: "She Was Nice To Mice: The Other Side of Elizabeth I's Character Never Before Revealed by Previous Historians",
-            price: 32
-        }
-    ],
-    totalPrice: 84,
-    delivery: "delivery",
-};
-const offers = [single, single2, single3];
+const offers = [single];
 
 const OffersScreen = () => {
     return (
@@ -82,18 +50,17 @@ const OffersScreen = () => {
                 </View>
             </View>
 
-
             <View style={styles.offersListStyle}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={offers}
-                    keyExtractor={offer => offer._id}
+                    keyExtractor={offer => offer.seller.seller_id}
                     renderItem={({item}) => {
-                        return <OffersListItem sellerName={item.sellerName}
-                                               books={item.books}
-                                               totalPrice={item.totalPrice}
-                                               delivery={item.delivery}
-                                               id={item._id}
+                        return <OffersListItem sellerName={item.seller.seller_id}
+                                               books={item.bookResult}
+                                               totalPrice={item.seller.total}
+                                               delivery={item.seller.lowestPriceDelivery}
+                                               id={item.seller.seller_id}
                         />
 
                     }

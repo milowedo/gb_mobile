@@ -13,8 +13,8 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
                 showsVerticalScrollIndicator={false}
                 style={offerStyles.listStyle}
                 data={books}
-                keyExtractor={element => element._id}
-                listKey={element => `${id}.${element._id}`
+                keyExtractor={element => element.auction_id}
+                listKey={element => `${id}.${element.auction_id}`
                 }
                 renderItem={({item}) => {
                     return (
@@ -28,18 +28,19 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
                                 />
                             </View>
                             <View style={offerStyles.bookRowTextChild}>
-                                <Text style={libraryStyles.titleStyle}>{item.title}</Text>
-                                <Text style={libraryStyles.writerStyle}>{item.writer}</Text>
+                                <Text style={libraryStyles.titleStyle}>{item.writer}</Text>
+                                <Text style={libraryStyles.writerStyle}>{item.bookTitle}</Text>
                             </View>
                             <View style={offerStyles.bookRowPriceChild}>
-                                <Text style={offerStyles.priceStyle}>{item.price} pln</Text>
+                                <Text style={offerStyles.priceStyle}>{item.priceAmount}</Text>
+                                <Text style={offerStyles.currencyStyle}>pln</Text>
                             </View>
                         </View>
                     )
                 }}/>
             <View style={offerStyles.bottomInfoStyle}>
                 <Text style={offerStyles.bottomInfoTotalPriceStyle}>total: {totalPrice}</Text>
-                <Text style={offerStyles.bottomInfoDeliveryStyle}>delivery options: {delivery}</Text>
+                <Text style={offerStyles.bottomInfoDeliveryStyle}>delivery from: {delivery}</Text>
             </View>
         </View>
     );
@@ -82,6 +83,7 @@ const offerStyles = StyleSheet.create(
             paddingLeft: 15,
         },
         bookRowPriceChild: {
+            flexDirection: 'row',
             width: 55,
         },
         priceStyle: {
@@ -90,12 +92,18 @@ const offerStyles = StyleSheet.create(
             textAlign: 'right',
             fontSize: 16,
         },
+        currencyStyle: {
+            fontWeight: 'bold',
+            textAlign: 'right',
+            alignSelf: 'center',
+            fontSize: 16,
+        },
         bottomInfoStyle: {
             marginHorizontal: 8,
             flexDirection: 'row',
             justifyContent: 'space-between',
         },
         bottomInfoTotalPriceStyle: {},
-        bottomInfoDeliveryStyle: {}
+        bottomInfoDeliveryStyle: {},
     }
 );
