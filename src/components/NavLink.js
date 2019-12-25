@@ -1,5 +1,5 @@
 import {StyleSheet, TouchableOpacity} from "react-native";
-import MarginWrapper from "../utilities/MarginWrapper";
+import MarginWrapper from "./utilities/MarginWrapper";
 import {Text} from "react-native-elements";
 import React from "react";
 import {withNavigation} from "react-navigation";
