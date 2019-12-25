@@ -1,73 +1,91 @@
-import React from "react";
+import React, {useState} from "react";
 import {SwipeListView} from "react-native-swipe-list-view";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import LibraryListItem from "./LibraryListItem";
 import {Icon} from "react-native-elements";
+import BookForm, {newItemStyles} from "../forms/BookForm";
 
 const LibraryListComponent = ({data, deleteBook, showPrice}) => {
+
+    const [clicked, setClicked] = useState(false);
+
     return (
-        <SwipeListView
-            showsVerticalScrollIndicator={false}
-            data={data}
-            keyExtractor={item => item._id}
-            renderItem={({item}) => (
-                <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => console.log('You touched ' + item.writer)}
-                    style={styles.rowFront}>
-                    <LibraryListItem price={showPrice}
-                                     book={item}/>
-                </TouchableOpacity>
-            )}
-            renderHiddenItem={({item}) => (
-                <View style={styles.rowBack}>
-
+        <>
+            <View style={styles.addingNewBookStyleView}>
+                {clicked ? <BookForm showFormTrigger={setClicked}/> :
                     <TouchableOpacity
-                        onPress={null}>
-                        <Icon
-                            name='sc-telegram'
-                            type='evilicon'
-                            color='#517fa4'
-                            onPress={() => {
-                                console.log("TO DO: on click of the position do something")
-                            }}
-                        />
-                        <Text>edit</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={styles.backRightBtn}
+                        style={styles.inputTriggerStyle}
                         onPress={() => {
-                            console.log("delete clicked");
-                            deleteBook(item._id);
+                            setClicked(true);
                         }}>
-                        <Text>delete</Text>
-                        <Icon
-                            name='sc-telegram'
-                            type='evilicon'
-                            color='#517fa4'
-                        />
+                        <Text style={styles.inputTriggerTextStyle}>new book</Text>
+                    </TouchableOpacity>}
+            </View>
+
+            <SwipeListView
+                showsVerticalScrollIndicator={false}
+                data={data}
+                keyExtractor={item => item._id}
+                renderItem={({item}) => (
+                    <TouchableOpacity
+                        activeOpacity={1}
+                        onPress={() => console.log('You touched ' + item.writer)}
+                        style={styles.rowFront}>
+                        <LibraryListItem price={showPrice}
+                                         book={item}/>
                     </TouchableOpacity>
+                )}
+                renderHiddenItem={({item}) => (
+                    <View style={styles.rowBack}>
 
-                </View>
-            )}
-            leftOpenValue={60}
-            rightOpenValue={-70}
+                        <TouchableOpacity
+                            onPress={null}>
+                            <Icon
+                                name='sc-telegram'
+                                type='evilicon'
+                                color='#517fa4'
+                                onPress={() => {
+                                    console.log("TO DO: on click of the position do something")
+                                }}
+                            />
+                            <Text>edit</Text>
+                        </TouchableOpacity>
 
-            previewRowKey={'3'}
-            previewOpenValue={-70}
-            previewOpenDelay={1000}
+                        <TouchableOpacity
+                            style={styles.backRightBtn}
+                            onPress={() => {
+                                console.log("delete clicked");
+                                deleteBook(item._id);
+                            }}>
+                            <Text>delete</Text>
+                            <Icon
+                                name='sc-telegram'
+                                type='evilicon'
+                                color='#517fa4'
+                            />
+                        </TouchableOpacity>
 
-            onRowDidOpen={ (rowKey, rowMap) => {
-                new Promise(() => {
-                    setTimeout(()=>{
-                        rowMap[rowKey]? rowMap[rowKey].closeRow() : null;
-                    }, 5000)
-                }).then();
-            }}
+                    </View>
+                )}
+                leftOpenValue={60}
+                rightOpenValue={-70}
 
-            closeOnRowPress
-        />
+                previewRowKey={'3'}
+                previewOpenValue={-70}
+                previewOpenDelay={1000}
+
+                onRowDidOpen={(rowKey, rowMap) => {
+                    new Promise(() => {
+                        setTimeout(() => {
+                            rowMap[rowKey] ? rowMap[rowKey].closeRow() : null;
+                        }, 5000)
+                    }).then();
+                }}
+
+                closeOnRowPress
+            />
+        </>
+
     )
 };
 
@@ -93,6 +111,19 @@ const styles = StyleSheet.create({
     backRightBtn: {
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    addingNewBookStyleView: {
+        borderBottomWidth: 2,
+        borderTopWidth: 2,
+    },
+    inputTriggerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 30,
+        backgroundColor: 'rgba(4,232,68,0.18)'
+    },
+    inputTriggerTextStyle: {
+        textAlign: 'center',
     }
 });
 

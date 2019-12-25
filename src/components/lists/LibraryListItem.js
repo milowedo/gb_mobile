@@ -48,8 +48,6 @@ export const libraryStyles = StyleSheet.create(
     {
         container: {
             flexDirection: 'row',
-            justifyContent: 'space-between'
-
         },
         titleStyle: {
             fontSize: 16,
