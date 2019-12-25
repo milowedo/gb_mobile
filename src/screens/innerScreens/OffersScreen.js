@@ -2,7 +2,6 @@ import React from 'react'
 import {FlatList, StyleSheet, View} from "react-native";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
-import {Button} from "react-native-elements";
 import OffersListItem from "../../components/lists/OffersListItem";
 
 const single = {
@@ -32,23 +31,24 @@ const offers = [single];
 const OffersScreen = () => {
     return (
         <>
-            <View style={styles.topGroupWithButtonsStyle}>
-                {/*<Text style={styles.filterHeaderStyle}>filter</Text>*/}
-                <View style={styles.buttonsTopGroupStyle}>
-                    <Button
-                        containerStyle={styles.singleButtonTopStyle}
-                        title={"count"}
-                    />
-                    <Button
-                        containerStyle={styles.singleButtonTopStyle}
-                        title={"lowest price"}
-                    />
-                    <Button
-                        containerStyle={styles.singleButtonTopStyle}
-                        title={"include"}
-                    />
-                </View>
-            </View>
+            {/*TODO implement it in further release*/}
+            {/*<View style={styles.topGroupWithButtonsStyle}>*/}
+            {/*    /!*<Text style={styles.filterHeaderStyle}>filter</Text>*!/*/}
+            {/*    <View style={styles.buttonsTopGroupStyle}>*/}
+            {/*        <Button*/}
+            {/*            containerStyle={styles.singleButtonTopStyle}*/}
+            {/*            title={"count"}*/}
+            {/*        />*/}
+            {/*        <Button*/}
+            {/*            containerStyle={styles.singleButtonTopStyle}*/}
+            {/*            title={"lowest price"}*/}
+            {/*        />*/}
+            {/*        <Button*/}
+            {/*            containerStyle={styles.singleButtonTopStyle}*/}
+            {/*            title={"include"}*/}
+            {/*        />*/}
+            {/*    </View>*/}
+            {/*</View>*/}
 
             <View style={styles.offersListStyle}>
                 <FlatList
