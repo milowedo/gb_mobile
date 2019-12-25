@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {View} from "react-native";
-import AuthForm from "../../components/auth/AuthForm";
+import AuthForm from "../../components/forms/AuthForm";
 import {NavigationEvents} from "react-navigation";
-import NavLink from "../../components/auth/NavLink";
+import NavLink from "../../components/NavLink";
 import {signingStyles as styles} from "../../constants/Layouts"
 import {Context as AuthContext} from "../../context/AuthenticationContext";
 
