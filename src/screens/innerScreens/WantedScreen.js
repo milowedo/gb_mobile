@@ -8,13 +8,13 @@ import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 
 const WantedScreen = ({navigation}) => {
 
-    const {state: {wanted}, fetchWantedBooks, deleteWantedBook} = useContext(Context);
+    const {state: {wanted}, fetchWantedBooks, deleteWantedBook, addBookToWanted} = useContext(Context);
 
     useEffect(() => {
-        console.info("WantedScreen: useEffect function");
+        console.debug("WantedScreen: useEffect function");
         fetchWantedBooks();
         return () => {
-            console.info("WantedScreen: useEffect return");
+            console.debug("WantedScreen: useEffect return");
         }
     }, []);
 
@@ -24,6 +24,7 @@ const WantedScreen = ({navigation}) => {
                 showPrice={true}
                 data={wanted}
                 deleteBook={deleteWantedBook}
+                addBook={addBookToWanted}
             />
         </View>
     );

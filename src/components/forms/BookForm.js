@@ -1,9 +1,15 @@
 import React, {useState} from "react";
-import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {Icon, Input} from "react-native-elements";
-import {signingStyles as styles} from "../../constants/Layouts";
 
-const BookForm = ({showFormTrigger}) => {
+function clearForm(showFormCallback, setPriceCap, setWriter, setTitle) {
+    showFormCallback(false);
+    setPriceCap("8");
+    setWriter('');
+    setTitle('')
+}
+
+const BookForm = ({showFormCallback, addBook}) => {
     const [title, setTitle] = useState('');
     const [writer, setWriter] = useState('');
     const [priceCap, setPriceCap] = useState("8");
@@ -43,10 +49,8 @@ const BookForm = ({showFormTrigger}) => {
             <View style={newItemStyles.iconsStyle}>
                 <Icon
                     onPress={() => {
-                        showFormTrigger(false);
-                        setPriceCap("8");
-                        setWriter('');
-                        setTitle('')
+                        addBook({title: title, writer: writer, priceCap: priceCap});
+                        clearForm(showFormCallback, setPriceCap, setWriter, setTitle);
                     }}
                     name='check'
                     type='evilicon'
@@ -54,12 +58,7 @@ const BookForm = ({showFormTrigger}) => {
                     size={30}
                 />
                 <Icon
-                    onPress={() => {
-                        showFormTrigger(false);
-                        setPriceCap("8");
-                        setWriter('');
-                        setTitle('')
-                    }}
+                    onPress={() => clearForm(showFormCallback, setPriceCap, setWriter, setTitle)}
                     name='close'
                     type='evilicon'
                     color='#517fa4'

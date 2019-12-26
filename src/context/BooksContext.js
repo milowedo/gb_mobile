@@ -48,10 +48,14 @@ const booksReducer = (state, action) => {
             return {...state, my: action.payload};
         case 'delete_my_book':
             return {...state, my: state.my.filter((element) => element._id !== action.payload)};
+        case 'add_to_library':
+            return {...state, my: state.my.filter((element) => element._id !== action.payload)};
         case 'get_wanted_books':
             console.info("BooksContext reducer: returning wanted");
             return {...state, wanted: action.payload};
         case 'delete_wanted_book':
+            return {...state, wanted: state.wanted.filter((element) => element._id !== action.payload)};
+        case 'add_to_wanted':
             return {...state, wanted: state.wanted.filter((element) => element._id !== action.payload)};
         default:
             return [];
@@ -61,22 +65,29 @@ const booksReducer = (state, action) => {
 const fetchMyBooks = dispatch => () => {
     dispatch({type: 'get_my_books', payload: myBooks})
 };
-
 const deleteMyBook = dispatch => (id) => {
     dispatch({type: 'delete_my_book', payload: id})
 };
+const addBookToLibrary = dispatch => (book) => {
+    dispatch({type: 'add_to_library', payload: book})
+};
+
 const fetchWantedBooks = dispatch => () => {
     dispatch({type: 'get_wanted_books', payload: wantedBooks})
 };
 const deleteWantedBook = dispatch => (id) => {
     dispatch({type:'delete_wanted_book', payload: id})
 };
+const addBookToWanted = dispatch => (book) => {
+    dispatch({type: 'add_to_wanted', payload: book})
+};
 
 export const {Provider, Context} = AbstractDataContext(
     booksReducer,
     {AbstractDataContext,
         fetchMyBooks, deleteMyBook,
-        fetchWantedBooks, deleteWantedBook
+        fetchWantedBooks, deleteWantedBook,
+        addBookToLibrary, addBookToWanted
     },
     []
 );

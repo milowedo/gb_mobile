@@ -5,14 +5,17 @@ import LibraryListItem from "./LibraryListItem";
 import {Icon} from "react-native-elements";
 import BookForm, {newItemStyles} from "../forms/BookForm";
 
-const LibraryListComponent = ({data, deleteBook, showPrice}) => {
+const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
 
     const [clicked, setClicked] = useState(false);
 
     return (
         <>
             <View style={styles.addingNewBookStyleView}>
-                {clicked ? <BookForm showFormTrigger={setClicked}/> :
+                {clicked ?
+                    <BookForm addBook={addBook}
+                        showFormCallback={setClicked}/>
+                    :
                     <TouchableOpacity
                         style={styles.inputTriggerStyle}
                         onPress={() => {

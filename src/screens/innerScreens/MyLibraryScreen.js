@@ -3,14 +3,11 @@ import {View, StyleSheet} from "react-native";
 import {Context} from "../../context/BooksContext";
 import LibraryListComponent from "../../components/lists/LibraryListComponent";
 import {headerStyles} from "../../constants/Layouts";
-import {Icon} from "react-native-elements";
-import {navigate} from "../../utils/navigationHelper";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
-
 
 const MyLibraryScreen = ({navigation}) => {
 
-    const {state: {my}, fetchMyBooks, deleteMyBook} = useContext(Context);
+    const {state: {my}, fetchMyBooks, deleteMyBook, addBookToLibrary} = useContext(Context);
 
     useEffect(() => {
         console.info("MyLibraryScreen: useEffect function");
@@ -27,6 +24,7 @@ const MyLibraryScreen = ({navigation}) => {
                 showPrice={false}
                 data={my}
                 deleteBook={deleteMyBook}
+                addBook={addBookToLibrary}
             />
         </View>
     );
