@@ -57,13 +57,12 @@ export const libraryStyles = StyleSheet.create(
             fontSize: 14,
         },
         bookInfoWithPrice: {
-            width: '80%',
+            width: '90%',
         },
         bookInfoWithoutPrice: {
-            width: '80%',
+            width: '100%',
         },
         priceStyle: {
-            paddingRight: 15,
             alignItems: 'center',
             justifyContent: 'center'
         },
