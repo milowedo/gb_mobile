@@ -1,34 +1,31 @@
-import React from 'react'
+import React, {useContext, useEffect, useRef} from 'react'
 import {FlatList, StyleSheet, View} from "react-native";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 import OffersListItem from "../../components/lists/OffersListItem";
-
-const single = {
-    seller: {
-        seller_id: "13994849",
-        lowestPriceDelivery: 5.90,
-        total: 7.0
-    },
-    bookResult: [
-        {
-            auction_id: "8747192826",
-            imageUrl: [
-                {
-                    "url": "https://a.allegroimg.com/original/111cbb/bdb7cbf54249a90522c28bb367b2"
-                }
-            ],
-            auctionName: "Kurt Vonnegut - Recydywista",
-            writer: "Kurt Vonnegut",
-            bookTitle: "Recydywista",
-            priceAmount: 7.0
-        },
-    ],
-    totalPrice: 0,
-};
-const offers = [single];
+import {Context} from "../../context/BooksContext";
 
 const OffersScreen = () => {
+    const {state: {calculated}, calculateOffers} = useContext(Context);
+
+    const useIsMounted = () => {
+        const isMounted = useRef(false);
+        useEffect(() => {
+            isMounted.current = true;
+            return () => (isMounted.current = false);
+        }, []);
+        return isMounted;
+    };
+
+    const isMounted = useIsMounted();
+
+    useEffect(() => {
+        if (isMounted.current) {
+            calculateOffers();
+        }
+    }, [isMounted]);
+
+
     return (
         <>
             {/*TODO implement it in further release*/}
@@ -53,7 +50,7 @@ const OffersScreen = () => {
             <View style={styles.offersListStyle}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={offers}
+                    data={calculated}
                     keyExtractor={offer => offer.seller.seller_id}
                     renderItem={({item}) => {
                         return <OffersListItem sellerName={item.seller.seller_id}

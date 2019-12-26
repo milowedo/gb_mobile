@@ -40,6 +40,8 @@ const booksReducer = (state, action) => {
             return {
                 ...state, wanted: wantedBooks
             };
+        case 'calculate_offers':
+            return {...state, calculated: action.payload.calculated};
         default:
             return [];
     }
@@ -82,7 +84,6 @@ async function persistBooks(shelfType) {
     }
 }
 
-
 const fetchMyBooks = dispatch => async () => {
     if (!myBooks) await fetchShelves();
     dispatch({type: 'get_my_books', payload: myBooks})
@@ -112,13 +113,35 @@ const addBookToWanted = dispatch => async (title, writer, price) => {
     persistBooks("wanted");
 };
 
+const calculateOffers = dispatch => async () => {
+    fetch(`${gateway}/calculate`, {
+            method: 'POST',
+            headers: {
+                "content-type": 'application/json',
+                "authorization": `Bearer ${await AsyncStorage.getItem('token')}`
+            },
+            body: JSON.stringify({wanted: wantedBooks}),
+        }
+    ).then(response => {
+            if (response.status === 400) {
+                return console.log(`Problem with fetching calculated offers: ${response}`);
+            }
+            console.log(`Books were successfully received from the service.`);
+            return response.json();
+        }
+    ).then(json => json).then((data) =>
+        dispatch({type: 'calculate_offers', payload: {calculated: data}}));
+
+};
+
 export const {Provider, Context} = AbstractDataContext(
     booksReducer,
     {
         AbstractDataContext,
         fetchMyBooks, deleteMyBook,
         fetchWantedBooks, deleteWantedBook,
-        addBookToLibrary, addBookToWanted
+        addBookToLibrary, addBookToWanted,
+        calculateOffers
     },
     []
 );

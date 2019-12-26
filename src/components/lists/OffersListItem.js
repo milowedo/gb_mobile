@@ -2,6 +2,7 @@ import React from "react";
 import {FlatList, StyleSheet, Text, View} from "react-native";
 import {Icon} from "react-native-elements";
 import {libraryStyles} from "./LibraryListItem";
+import { pure } from 'recompose';
 
 const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
 
@@ -46,7 +47,7 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
     );
 };
 
-export default OffersListItem;
+export default pure(OffersListItem);
 
 const offerStyles = StyleSheet.create(
     {
