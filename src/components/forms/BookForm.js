@@ -26,7 +26,7 @@ const BookForm = ({showFormCallback, addBook}) => {
                 />
                 <Input
                     inputStyle={newItemStyles.writerStyle}
-                    placeholder={"Ernest Hemingway"}
+                    placeholder={"Hemingway"}
                     value={writer}
                     onChangeText={setWriter}
                 />

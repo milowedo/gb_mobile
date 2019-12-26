@@ -29,8 +29,8 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
                                 />
                             </View>
                             <View style={offerStyles.bookRowTextChild}>
-                                <Text style={libraryStyles.titleStyle}>{item.writer}</Text>
-                                <Text style={libraryStyles.writerStyle}>{item.bookTitle}</Text>
+                                <Text style={libraryStyles.titleStyle}>{item.bookTitle}</Text>
+                                <Text style={libraryStyles.writerStyle}>{item.writer}</Text>
                             </View>
                             <View style={offerStyles.bookRowPriceChild}>
                                 <Text style={offerStyles.priceStyle}>{item.priceAmount}</Text>

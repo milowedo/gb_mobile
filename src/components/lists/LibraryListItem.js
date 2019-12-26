@@ -54,7 +54,7 @@ export const libraryStyles = StyleSheet.create(
             fontWeight: 'bold',
         },
         writerStyle: {
-            fontSize: 14,
+            fontSize: 13,
         },
         bookInfoWithPrice: {
             width: '90%',
