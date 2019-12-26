@@ -56,7 +56,6 @@ const booksReducer = (state, action) => {
                     _id: action.payload._id,
                     writer: action.payload.writer,
                     title: action.payload.title,
-                    price: action.payload.price,
                 });
             return {
                 ...state, my: myBooks
@@ -87,28 +86,28 @@ const fetchMyBooks = dispatch => () => {
 const deleteMyBook = dispatch => (id) => {
     dispatch({type: 'delete_my_book', payload: id})
 };
-const addBookToLibrary = dispatch => async (title, writer, price) => {
-    const _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
-    dispatch({type: 'add_to_library', payload: {_id, title, writer, price}});
-    let athToken = await AsyncStorage.getItem('token');
-    try {
-        const response = await fetch(`${gateway}/books`, {
-                method: 'POST',
-                headers: {
-                    "content-type": 'application/json',
-                    "authorization": `Bearer ${athToken}`
-                },
-                body: JSON.stringify({
-                    library: myBooks
-                }),
-            }
-        );
-        if (!response.ok) {
-            throw new Error("Problem with saving wanted books");
+
+async function persistBooks(shelfType) {
+    const body = shelfType === "library" ? {library: myBooks} : shelfType === "wanted" ? {wanted: wantedBooks} : null;
+    if (body == null) return;
+    const response = await fetch(`${gateway}/books`, {
+            method: 'POST',
+            headers: {
+                "content-type": 'application/json',
+                "authorization": `Bearer ${await AsyncStorage.getItem('token')}`
+            },
+            body: JSON.stringify(body),
         }
-    } catch (e) {
-        console.error("BookContext addBookToWanted error: ", e);
+    );
+    if (!response.ok) {
+        console.log(`Problem with saving ${shelfType} books`);
     }
+}
+
+const addBookToLibrary = dispatch => async (title, writer) => {
+    const _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
+    dispatch({type: 'add_to_library', payload: {_id, title, writer}});
+    persistBooks("library");
 };
 
 const fetchWantedBooks = dispatch => () => {
@@ -120,25 +119,7 @@ const deleteWantedBook = dispatch => (id) => {
 const addBookToWanted = dispatch => async (title, writer, price) => {
     const _id = (Math.max.apply(null, wantedBooks.map(e => e._id)) + 1).toString();
     dispatch({type: 'add_to_wanted', payload: {_id, title, writer, price}});
-    let athToken = await AsyncStorage.getItem('token');
-    try {
-        const response = await fetch(`${gateway}/books`, {
-                method: 'POST',
-                headers: {
-                    "content-type": 'application/json',
-                    "authorization": `Bearer ${athToken}`
-                },
-                body: JSON.stringify({
-                    wanted: wantedBooks
-                }),
-            }
-        );
-        if (!response.ok) {
-            throw new Error("Problem with saving wanted books");
-        }
-    } catch (e) {
-        console.error("BookContext addBookToWanted error: ", e);
-    }
+    persistBooks("wanted");
 };
 
 export const {Provider, Context} = AbstractDataContext(
