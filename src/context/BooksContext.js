@@ -12,7 +12,8 @@ const booksReducer = (state, action) => {
             console.info("BooksContext reducer: returning my lib");
             return {...state, my: action.payload};
         case 'delete_my_book':
-            return {...state, my: state.my.filter((element) => element._id !== action.payload)};
+            myBooks = state.my.filter((element) => element._id !== action.payload);
+            return {...state, my: myBooks};
         case 'add_to_library':
             myBooks = state.my.concat(
                 {
@@ -26,7 +27,8 @@ const booksReducer = (state, action) => {
         case 'get_wanted_books':
             return {...state, wanted: action.payload};
         case 'delete_wanted_book':
-            return {...state, wanted: state.wanted.filter((element) => element._id !== action.payload)};
+            wantedBooks = state.wanted.filter((element) => element._id !== action.payload);
+            return {...state, wanted: wantedBooks};
         case 'add_to_wanted':
             wantedBooks = state.wanted.concat(
                 {
@@ -41,14 +43,6 @@ const booksReducer = (state, action) => {
         default:
             return [];
     }
-};
-
-const fetchMyBooks = dispatch => async () => {
-    if (!myBooks) await fetchShelves();
-    dispatch({type: 'get_my_books', payload: myBooks})
-};
-const deleteMyBook = dispatch => (id) => {
-    dispatch({type: 'delete_my_book', payload: id})
 };
 
 async function fetchShelves() {
@@ -81,14 +75,26 @@ async function persistBooks(shelfType) {
             body: JSON.stringify(body),
         }
     );
-    if (!response.ok) {
-        console.log(`Problem with saving ${shelfType} books`);
+    if ((await response).status !== 200) {
+        console.log(`Problem with saving ${shelfType} books: ${(await response).statusText}`);
+    } else {
+        console.log("Books were successfully sent to database")
     }
 }
 
+
+const fetchMyBooks = dispatch => async () => {
+    if (!myBooks) await fetchShelves();
+    dispatch({type: 'get_my_books', payload: myBooks})
+};
+const deleteMyBook = dispatch => async (id) => {
+    await dispatch({type: 'delete_my_book', payload: id});
+    persistBooks("library");
+};
+
 const addBookToLibrary = dispatch => async (title, writer) => {
     const _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
-    dispatch({type: 'add_to_library', payload: {_id, title, writer}});
+    await dispatch({type: 'add_to_library', payload: {_id, title, writer}});
     persistBooks("library");
 };
 
@@ -96,8 +102,9 @@ const fetchWantedBooks = dispatch => async () => {
     if (!wantedBooks) await fetchShelves();
     dispatch({type: 'get_wanted_books', payload: wantedBooks})
 };
-const deleteWantedBook = dispatch => (id) => {
-    dispatch({type: 'delete_wanted_book', payload: id})
+const deleteWantedBook = dispatch => async (id) => {
+    await dispatch({type: 'delete_wanted_book', payload: id});
+    persistBooks("wanted");
 };
 const addBookToWanted = dispatch => async (title, writer, price) => {
     const _id = (Math.max.apply(null, wantedBooks.map(e => e._id)) + 1).toString();

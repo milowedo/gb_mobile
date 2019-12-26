@@ -67,8 +67,8 @@ const innerTabNavigator = createBottomTabNavigator({
         // swipeEnabled: true,
         tabBarPosition: 'bottom',
         // TODO for offers development
-        // initialRouteName: 'Wanted',
-        initialRouteName: 'Offers',
+        initialRouteName: 'Wanted',
+        // initialRouteName: 'Offers',
         //TODO remove after
         lazy: true,
         animationEnabled: false,
