@@ -49,7 +49,7 @@ const BookForm = ({showFormCallback, addBook}) => {
             <View style={newItemStyles.iconsStyle}>
                 <Icon
                     onPress={() => {
-                        addBook({title: title, writer: writer, priceCap: priceCap});
+                        addBook(title, writer, priceCap);
                         clearForm(showFormCallback, setPriceCap, setWriter, setTitle);
                     }}
                     name='check'

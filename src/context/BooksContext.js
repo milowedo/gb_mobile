@@ -1,7 +1,8 @@
 import React from "react";
 import AbstractDataContext from "./AbstractDataContext";
+import {AsyncStorage} from "react-native";
 
-const wantedBooks = [
+let wantedBooks = [
     {_id: "0", writer: "Kurt Vonnegut", title: "Breakfast of Champions", price: 37},
     {_id: "1", writer: "Truman Capote", title: "Z zimną krwią", price: 55},
     {_id: "2", writer: "Philip Kindred Dick", title: "Valis", price: 12},
@@ -21,7 +22,7 @@ const wantedBooks = [
         price: 32
     },
 ];
-const myBooks = [
+let myBooks = [
     {_id: "0", writer: "Kurt Vonnegut", title: "Slaughterhouse no 5"},
     {
         _id: "1",
@@ -40,6 +41,7 @@ const myBooks = [
     {_id: "11", writer: "Jaume Cabré", title: "Głosy panamo"},
     {_id: "12", writer: "Jaume Cabré", title: "Wyznaję"},
 ];
+const gateway = "https://gb-gateway.herokuapp.com";
 
 const booksReducer = (state, action) => {
     switch (action.type) {
@@ -49,14 +51,31 @@ const booksReducer = (state, action) => {
         case 'delete_my_book':
             return {...state, my: state.my.filter((element) => element._id !== action.payload)};
         case 'add_to_library':
-            return {...state, my: state.my.filter((element) => element._id !== action.payload)};
+            myBooks = state.my.concat(
+                {
+                    _id: action.payload._id,
+                    writer: action.payload.writer,
+                    title: action.payload.title,
+                    price: action.payload.price,
+                });
+            return {
+                ...state, my: myBooks
+            };
         case 'get_wanted_books':
-            console.info("BooksContext reducer: returning wanted");
             return {...state, wanted: action.payload};
         case 'delete_wanted_book':
             return {...state, wanted: state.wanted.filter((element) => element._id !== action.payload)};
         case 'add_to_wanted':
-            return {...state, wanted: state.wanted.filter((element) => element._id !== action.payload)};
+            wantedBooks = state.wanted.concat(
+                {
+                    _id: action.payload._id,
+                    writer: action.payload.writer,
+                    title: action.payload.title,
+                    price: action.payload.price,
+                });
+            return {
+                ...state, wanted: wantedBooks
+            };
         default:
             return [];
     }
@@ -68,23 +87,64 @@ const fetchMyBooks = dispatch => () => {
 const deleteMyBook = dispatch => (id) => {
     dispatch({type: 'delete_my_book', payload: id})
 };
-const addBookToLibrary = dispatch => (book) => {
-    dispatch({type: 'add_to_library', payload: book})
+const addBookToLibrary = dispatch => async (title, writer, price) => {
+    const _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
+    dispatch({type: 'add_to_library', payload: {_id, title, writer, price}});
+    let athToken = await AsyncStorage.getItem('token');
+    try {
+        const response = await fetch(`${gateway}/books`, {
+                method: 'POST',
+                headers: {
+                    "content-type": 'application/json',
+                    "authorization": `Bearer ${athToken}`
+                },
+                body: JSON.stringify({
+                    library: myBooks
+                }),
+            }
+        );
+        if (!response.ok) {
+            throw new Error("Problem with saving wanted books");
+        }
+    } catch (e) {
+        console.error("BookContext addBookToWanted error: ", e);
+    }
 };
 
 const fetchWantedBooks = dispatch => () => {
     dispatch({type: 'get_wanted_books', payload: wantedBooks})
 };
 const deleteWantedBook = dispatch => (id) => {
-    dispatch({type:'delete_wanted_book', payload: id})
+    dispatch({type: 'delete_wanted_book', payload: id})
 };
-const addBookToWanted = dispatch => (book) => {
-    dispatch({type: 'add_to_wanted', payload: book})
+const addBookToWanted = dispatch => async (title, writer, price) => {
+    const _id = (Math.max.apply(null, wantedBooks.map(e => e._id)) + 1).toString();
+    dispatch({type: 'add_to_wanted', payload: {_id, title, writer, price}});
+    let athToken = await AsyncStorage.getItem('token');
+    try {
+        const response = await fetch(`${gateway}/books`, {
+                method: 'POST',
+                headers: {
+                    "content-type": 'application/json',
+                    "authorization": `Bearer ${athToken}`
+                },
+                body: JSON.stringify({
+                    wanted: wantedBooks
+                }),
+            }
+        );
+        if (!response.ok) {
+            throw new Error("Problem with saving wanted books");
+        }
+    } catch (e) {
+        console.error("BookContext addBookToWanted error: ", e);
+    }
 };
 
 export const {Provider, Context} = AbstractDataContext(
     booksReducer,
-    {AbstractDataContext,
+    {
+        AbstractDataContext,
         fetchMyBooks, deleteMyBook,
         fetchWantedBooks, deleteWantedBook,
         addBookToLibrary, addBookToWanted
