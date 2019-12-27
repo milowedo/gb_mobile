@@ -6,7 +6,8 @@ const settingsIcon = () => (
     <Icon
         size={30}
         containerStyle={{paddingRight: 10}}
-        name="home"
+        name="gear"
+        type='evilicon'
         color="white"
         onPress={
             () => {

@@ -12,7 +12,7 @@ const SettingsScreen = ({navigation}) => {
 
     return (
         <>
-            <Text h2 >Woah settings screen</Text>
+            <Text h2>Woah settings screen</Text>
             <MarginWrapper>
                 <Button title={"Sign out"} onPress={signout}/>
             </MarginWrapper>
@@ -33,7 +33,10 @@ SettingsScreen.navigationOptions = {
     headerTitleStyle: headerStyles.headerTitleStyle,
     headerRight: () => (
         <Icon
-            name="home"
+            size={30}
+            containerStyle={{paddingRight: 10}}
+            name="minus"
+            type="evilicon"
             color="white"
             onPress={
                 () => {
