@@ -126,13 +126,14 @@ const calculateOffers = dispatch => async () => {
             if (response.status === 400) {
                 return console.log(`Problem with fetching calculated offers: ${response}`);
             }
-            console.log(`Books were successfully received from the service.`);
             return response.json();
         }
-    ).then(json => json).then((data) =>
-        dispatch({type: 'calculate_offers', payload: {calculated: data}}));
-
-};
+    ).then(json => json).then((data) =>{
+        console.log(`${data.length} books were successfully received from the service.`);
+        dispatch({type: 'calculate_offers', payload: {calculated: data}})
+        }
+    );
+}
 
 export const {Provider, Context} = AbstractDataContext(
     booksReducer,
