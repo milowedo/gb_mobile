@@ -4,6 +4,7 @@ import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 import OffersListItem from "../../components/lists/OffersListItem";
 import {Context} from "../../context/BooksContext";
+import {Icon} from "react-native-elements";
 
 const OffersScreen = () => {
     const {state: {calculated}, calculateOffers} = useContext(Context);
@@ -46,7 +47,21 @@ const OffersScreen = () => {
             {/*        />*/}
             {/*    </View>*/}
             {/*</View>*/}
-
+            <View>
+                <Icon
+                    size={20}
+                    containerStyle={{
+                        alignItems:"flex-end"}}
+                    name='refresh'
+                    type='evilicon'
+                    color="black"
+                    onPress={
+                        () => {
+                            calculateOffers()
+                        }
+                    }
+                />
+            </View>
             <View style={styles.offersListStyle}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
