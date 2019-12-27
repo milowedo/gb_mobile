@@ -1,8 +1,7 @@
 import React from "react";
-import {FlatList, StyleSheet, Text, View} from "react-native";
-import {Icon} from "react-native-elements";
+import {FlatList, Image, StyleSheet, Text, View} from "react-native";
 import {libraryStyles} from "./LibraryListItem";
-import { pure } from 'recompose';
+import {pure} from 'recompose';
 
 const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
 
@@ -21,11 +20,12 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
                     return (
                         <View style={offerStyles.listElementStyle}>
                             <View style={offerStyles.bookRowImageChild}>
-                                <Icon
-                                    name='user'
-                                    type='evilicon'
-                                    color='#517fa4'
-                                    size={28}
+                                <Image
+                                    source={item.imageUrl[0] ? {uri: item.imageUrl[0].url} : require('../../../assets/images/robot-dev.png')}
+                                    style={{
+                                        height: 50,
+                                        width: 50,
+                                        resizeMode:'contain'}}
                                 />
                             </View>
                             <View style={offerStyles.bookRowTextChild}>
@@ -76,8 +76,9 @@ const offerStyles = StyleSheet.create(
             borderColor: '#525257',
         },
         bookRowImageChild: {
-            alignSelf: 'center',
+            margin: 3,
             width: 50,
+            height: 50,
         },
         bookRowTextChild: {
             width: '65%',
