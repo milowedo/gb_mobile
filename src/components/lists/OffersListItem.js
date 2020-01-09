@@ -33,7 +33,7 @@ const OffersListItem = ({id, sellerName, books, totalPrice, delivery}) => {
                                 <Text style={libraryStyles.writerStyle}>{item.writer}</Text>
                             </View>
                             <View style={offerStyles.bookRowPriceChild}>
-                                <Text style={offerStyles.priceStyle}>{item.priceAmount}</Text>
+                                <Text style={offerStyles.priceStyle}>{(item.priceAmount).toFixed(2)}</Text>
                                 <Text style={offerStyles.currencyStyle}>pln</Text>
                             </View>
                         </View>
