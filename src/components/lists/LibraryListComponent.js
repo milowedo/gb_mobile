@@ -41,18 +41,15 @@ const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
                 renderHiddenItem={({item}) => (
                     <View style={styles.rowBack}>
 
-                        <TouchableOpacity
-                            onPress={null}>
-                            <Icon
-                                name='sc-telegram'
-                                type='evilicon'
-                                color='#517fa4'
-                                onPress={() => {
-                                    console.log("TO DO: on click of the position do something")
-                                }}
-                            />
-                            <Text>edit</Text>
-                        </TouchableOpacity>
+                        {/*<TouchableOpacity*/}
+                        {/*    onPress={null}>*/}
+                        {/*    <Icon*/}
+                        {/*        name='sc-telegram'*/}
+                        {/*        type='evilicon'*/}
+                        {/*        color='#517fa4'*/}
+                        {/*    />*/}
+                        {/*    <Text>edit</Text>*/}
+                        {/*</TouchableOpacity>*/}
 
                         <TouchableOpacity
                             style={styles.backRightBtn}
@@ -70,21 +67,21 @@ const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
 
                     </View>
                 )}
-                leftOpenValue={60}
-                rightOpenValue={-70}
+                leftOpenValue={70}
+                rightOpenValue={0}
 
                 previewRowKey={'3'}
-                previewOpenValue={-70}
+                previewOpenValue={70}
                 previewOpenDelay={1000}
 
                 onRowDidOpen={(rowKey, rowMap) => {
-                    new Promise(() => {
+                    var xd = new Promise(() => {
                         setTimeout(() => {
                             rowMap[rowKey] ? rowMap[rowKey].closeRow() : null;
                         }, 5000)
                     }).then();
                 }}
-
+                
                 closeOnRowPress
             />
         </>
