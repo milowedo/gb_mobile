@@ -41,7 +41,6 @@ const signup = (dispatch) => async ({email, password}) => {
         dispatch({type: "signin", payload: responseObject.token});
         navigate('AppFlow');
     } catch (e) {
-        console.error("AuthenticationContext signup: ", e.stackTrace);
         dispatch({type: 'add_error', payload: "Something went wrong with sign up"})
     }
 };
