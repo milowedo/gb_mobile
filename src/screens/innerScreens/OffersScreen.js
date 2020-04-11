@@ -69,8 +69,7 @@ const OffersScreen = () => {
                     data={calculated}
                     keyExtractor={offer => offer.seller.seller_id}
                     renderItem={({item}) => {
-                        return <OffersListItem sellerName={item.seller.seller_id}
-                                               books={item.bookResult}
+                        return <OffersListItem books={item.bookResult}
                                                totalPrice={item.seller.total}
                                                delivery={item.seller.lowestPriceDelivery}
                                                id={item.seller.seller_id}
