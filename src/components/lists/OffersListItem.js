@@ -46,8 +46,8 @@ const OffersListItem = ({id, books, totalPrice, delivery}) => {
             }
         />
     <View style={offerStyles.bottomInfoStyle}>
-        <Text style={offerStyles.bottomInfoTotalPriceStyle}>total: {totalPrice}</Text>
-        <Text style={offerStyles.bottomInfoDeliveryStyle}>delivery from: {delivery}</Text>
+        <Text style={offerStyles.bottomInfoTotalPriceStyle}>total: {(totalPrice).toFixed(2)}</Text>
+        <Text style={offerStyles.bottomInfoDeliveryStyle}>delivery from: {(delivery).toFixed(2)}</Text>
     </View>
 </View>
 )
