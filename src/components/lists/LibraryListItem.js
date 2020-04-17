@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {StyleSheet, Text, TextInput, View} from "react-native";
 
-const LibraryListItem = ({book, price}) => {
+const LibraryListItem = ({book, price, editCallback}) => {
+
+    const [priceChanged, setPriceChanged] = useState(book.price);
 
     return (
         <View style={libraryStyles.container}>
@@ -27,9 +29,16 @@ const LibraryListItem = ({book, price}) => {
                             style={libraryStyles.priceInputStyle}
                             keyboardType={"numeric"}
                             maxLength={2}
-                            onBlur={() => console.log("TODO change books price")}
+                            onChangeText={(text) =>
+                                setPriceChanged(text)
+                            }
+                            onBlur={() => {
+                                if (!isNaN(priceChanged)) {
+                                    editCallback(book._id, priceChanged)
+                                }
+                            }}
                         >
-                            {book.price}
+                            {priceChanged}
                         </TextInput>
                         <Text
                             style={libraryStyles.priceCurrencyStyle}>

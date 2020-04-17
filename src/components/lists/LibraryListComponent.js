@@ -5,7 +5,7 @@ import LibraryListItem from "./LibraryListItem";
 import {Icon} from "react-native-elements";
 import BookForm, {newItemStyles} from "../forms/BookForm";
 
-const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
+const LibraryListComponent = ({data, deleteBook, showPrice, addBook, editPrice}) => {
 
     const [clicked, setClicked] = useState(false);
 
@@ -14,7 +14,7 @@ const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
             <View style={styles.addingNewBookStyleView}>
                 {clicked ?
                     <BookForm addBook={addBook}
-                        showFormCallback={setClicked}/>
+                              showFormCallback={setClicked}/>
                     :
                     <TouchableOpacity
                         style={styles.inputTriggerStyle}
@@ -35,7 +35,8 @@ const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
                         onPress={() => console.log('You touched ' + item.writer)}
                         style={styles.rowFront}>
                         <LibraryListItem price={showPrice}
-                                         book={item}/>
+                                         book={item}
+                                         editCallback={editPrice}/>
                     </TouchableOpacity>
                 )}
                 renderHiddenItem={({item}) => (
@@ -81,7 +82,7 @@ const LibraryListComponent = ({data, deleteBook, showPrice, addBook}) => {
                         }, 5000)
                     }).then();
                 }}
-                
+
                 closeOnRowPress
             />
         </>

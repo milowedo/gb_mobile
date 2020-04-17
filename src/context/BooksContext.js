@@ -42,6 +42,16 @@ const booksReducer = (state, action) => {
             };
         case 'calculate_offers':
             return {...state, calculated: action.payload.calculated};
+        case 'edit_price':
+            state.wanted.forEach((element) => {
+                console.log(element._id)
+                console.log(action.payload.id)
+                if(element._id === action.payload.id) {
+                    element.price  = action.payload.price;
+                }
+            });
+            console.log(state.wanted)
+            return {...state};
         default:
             return [];
     }
@@ -92,7 +102,6 @@ const deleteMyBook = dispatch => async (id) => {
     await dispatch({type: 'delete_my_book', payload: id});
     persistBooks("library");
 };
-
 const addBookToLibrary = dispatch => async (title, writer) => {
     const _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
     await dispatch({type: 'add_to_library', payload: {_id, title, writer}});
@@ -112,6 +121,12 @@ const addBookToWanted = dispatch => async (title, writer, price) => {
     dispatch({type: 'add_to_wanted', payload: {_id, title, writer, price}});
     persistBooks("wanted");
 };
+
+const editWantedBookPrice = dispatch => async (id, price) => {
+    console.log("editwantedbookPrice: ", id)
+    dispatch({type: 'edit_price', payload: {id, price}});
+    persistBooks("wanted");
+}
 
 const calculateOffers = dispatch => async () => {
     fetch(`${gateway}/calculate`, {
@@ -142,7 +157,8 @@ export const {Provider, Context} = AbstractDataContext(
         fetchMyBooks, deleteMyBook,
         fetchWantedBooks, deleteWantedBook,
         addBookToLibrary, addBookToWanted,
-        calculateOffers
+        calculateOffers,
+        editWantedBookPrice
     },
     []
 );
