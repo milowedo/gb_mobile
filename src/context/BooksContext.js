@@ -44,13 +44,10 @@ const booksReducer = (state, action) => {
             return {...state, calculated: action.payload.calculated};
         case 'edit_price':
             state.wanted.forEach((element) => {
-                console.log(element._id)
-                console.log(action.payload.id)
                 if(element._id === action.payload.id) {
                     element.price  = action.payload.price;
                 }
             });
-            console.log(state.wanted)
             return {...state};
         default:
             return [];
