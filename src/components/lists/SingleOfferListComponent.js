@@ -1,8 +1,21 @@
-import React from "react";
-import {FlatList, Image, Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, {useEffect, useState} from "react";
+import {AsyncStorage, FlatList, Image, Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {libraryStyles} from "./LibraryListItem";
 
 const SingleOfferListComponent = ({listId, listElements}) => {
+
+    const [imageLoading, setImageLoading] = useState(false)
+
+    useEffect(() => {
+        getDownloadingPhotosProperty().then();
+        return () => {}
+    }, []);
+
+    async function getDownloadingPhotosProperty() {
+        await AsyncStorage.getItem('downloadPictures')
+            .then(value => setImageLoading(value === "true"));
+    }
+
 
     return <FlatList
         showsVerticalScrollIndicator={false}
@@ -15,14 +28,13 @@ const SingleOfferListComponent = ({listId, listElements}) => {
             return (
                 <View style={offerStyles.listElementStyle}>
                     <View style={offerStyles.bookRowImageChild}>
-                        <Image
+                        {imageLoading ? <Image
                             source={item.imageUrl[0] ? {uri: item.imageUrl[0].url} : require('../../../assets/images/robot-dev.png')}
-                            style={{
-                                height: 50,
-                                width: 50,
-                                resizeMode: 'contain'
-                            }}
-                        />
+                            style={offerStyles.img}
+                        /> : <Image
+                            source={require('../../../assets/images/robot-dev.png')}
+                            style={offerStyles.img}
+                        />}
                     </View>
                     <TouchableOpacity style={offerStyles.bookRowTextChild}
                                       onPress={() => Linking.openURL("https://allegro.pl/oferta/".concat(item.auction_id))
@@ -81,6 +93,11 @@ const offerStyles = StyleSheet.create(
             alignSelf: 'center',
             fontSize: 16,
         },
+        img: {
+            height: 50,
+            width: 50,
+            resizeMode: 'contain'
+        }
     });
 
 export default SingleOfferListComponent;
