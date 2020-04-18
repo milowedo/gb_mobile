@@ -126,6 +126,7 @@ const editWantedBookPrice = dispatch => async (id, price) => {
 }
 
 const calculateOffers = dispatch => async () => {
+    if(!wantedBooks) return
     fetch(`${gateway}/calculate`, {
             method: 'POST',
             headers: {

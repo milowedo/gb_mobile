@@ -8,26 +8,32 @@ import {Icon} from "react-native-elements";
 import Spinner from "../../components/utilities/Spinner";
 
 const OffersScreen = () => {
-    const {state: {calculated}, calculateOffers} = useContext(Context);
-
-    const useIsMounted = () => {
-        const isMounted = useRef(false);
-        useEffect(() => {
-            isMounted.current = true;
-            return () => (isMounted.current = false);
-        }, []);
-        return isMounted;
-    };
-
-    const isMounted = useIsMounted();
+    const {state: {calculated, wanted}, calculateOffers} = useContext(Context);
 
     useEffect(() => {
-        if (isMounted.current) {
-            calculateOffers();
+        if(wanted !== undefined && calculated === undefined){
+            calculateOffers()
         }
-    }, [isMounted]);
+    })
 
-    return calculated === undefined ? <Spinner/>
+    // const useIsMounted = () => {
+    //     const isMounted = useRef(false);
+    //     useEffect(() => {
+    //         isMounted.current = true;
+    //         return () => (isMounted.current = false);
+    //     }, []);
+    //     return isMounted;
+    // };
+    //
+    // const isMounted = useIsMounted();
+    //
+    // useEffect(() => {
+    //     if (isMounted.current) {
+    //         calculateOffers();
+    //     }
+    // }, [isMounted]);
+
+    return wanted !== undefined && calculated === undefined ? <Spinner/>
         : (
             <>
                 {/*TODO implement it in further release*/}
