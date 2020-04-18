@@ -75,6 +75,7 @@ const OffersScreen = () => {
                                                    totalPrice={item.seller.total}
                                                    delivery={item.seller.lowestPriceDelivery}
                                                    id={item.seller.seller_id}
+                                                   duplicates={item.bookDuplicates}
                             />
 
                         }
