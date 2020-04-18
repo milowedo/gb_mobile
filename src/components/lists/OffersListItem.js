@@ -1,9 +1,11 @@
-import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import React, {useState} from "react";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {pure} from 'recompose';
 import SingleOfferListComponent from "./SingleOfferListComponent";
 
 const OffersListItem = ({id, books, duplicates, totalPrice, delivery}) => {
+
+    const [showDuplicates, setShowDuplicates] = useState(false);
 
     return (
         <View style={offerStyles.container}>
@@ -14,7 +16,21 @@ const OffersListItem = ({id, books, duplicates, totalPrice, delivery}) => {
                 listElements={books}
             />
 
-            <Text style={offerStyles.bottomInfoDeliveryStyle}>+ delivery from: {(delivery).toFixed(2)}</Text>
+            <View style={offerStyles.bottomTabStyle}>
+                <Text style={offerStyles.bottomInfoDeliveryStyle}>+ delivery from: {(delivery).toFixed(2)}</Text>
+                {duplicates ?
+                    <TouchableOpacity
+                        style={offerStyles.duplicatesButton}
+                        onPress={() => setShowDuplicates(!showDuplicates)}>
+                        <Text style={offerStyles.buttonText}>show duplicates</Text>
+                    </TouchableOpacity> : null}
+            </View>
+
+            {showDuplicates ?
+                <SingleOfferListComponent
+                    listId={id}
+                    listElements={duplicates}
+                /> : null }
 
         </View>
     )
@@ -35,11 +51,23 @@ const offerStyles = StyleSheet.create(
             textAlign: 'right',
             paddingVertical: 6,
             paddingRight: 16,
-            // borderWidth: 2,
-            // borderColor: 'red'
+        },
+        bottomTabStyle: {
+            borderTopWidth: 1,
+            paddingTop: 5,
+            margin: 5,
+            flexDirection: 'row',
+            justifyContent: 'space-around',
         },
         bottomInfoDeliveryStyle: {
-            textAlign: 'center',
+            textAlign: 'right',
+            alignSelf: 'flex-start',
         },
+        duplicatesButton: {
+            alignSelf: 'flex-end',
+        },
+        buttonText: {
+            fontWeight: 'bold',
+        }
     }
 );

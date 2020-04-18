@@ -77,7 +77,6 @@ const OffersScreen = () => {
                                                    id={item.seller.seller_id}
                                                    duplicates={item.bookDuplicates}
                             />
-
                         }
                         }/>
                 </View>

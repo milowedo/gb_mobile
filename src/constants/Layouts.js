@@ -44,7 +44,7 @@ export const signingStyles = StyleSheet.create({
         backgroundColor: '#517fa4',
         width: '80%',
         alignSelf: "center",
-    }
+    },
 });
 
 export const headerStyles = StyleSheet.create({
