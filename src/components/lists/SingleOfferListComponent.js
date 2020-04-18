@@ -4,16 +4,20 @@ import {libraryStyles} from "./LibraryListItem";
 
 const SingleOfferListComponent = ({listId, listElements}) => {
 
-    const [imageLoading, setImageLoading] = useState(false)
+    const [imageLoading, setImageLoading] = useState(true)
 
     useEffect(() => {
-        getDownloadingPhotosProperty().then();
+        getDownloadingPhotosProperty()
         return () => {}
     }, []);
 
     async function getDownloadingPhotosProperty() {
         await AsyncStorage.getItem('downloadPictures')
-            .then(value => setImageLoading(value === "true"));
+            .then(value => {
+                if(value !== null) {
+                    setImageLoading(value === "true")
+                }
+            });
     }
 
 
