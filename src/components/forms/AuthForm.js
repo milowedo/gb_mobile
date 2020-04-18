@@ -1,18 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import MarginWrapper from "../utilities/MarginWrapper";
 import {Button, Icon, Input, Text} from "react-native-elements";
 import {signingStyles as styles} from "../../constants/Layouts"
+import {ActivityIndicator} from "react-native";
 
-const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle}) => {
+const AuthForm = ({errorMessage, clearErrorCallback, headerText, callbackOnSubmit, submitButtonTitle}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showSpinner, setShowSpinner] = useState(false);
+
+    useEffect(() => {
+        if(errorMessage) {
+            setShowSpinner(false)
+        }
+    });
 
     return (
         <>
+            {showSpinner && !errorMessage ? <ActivityIndicator size="large" color="#517fa4"/> : null}
             <MarginWrapper margin={30}>
                 <Text h2>{headerText}</Text>
             </MarginWrapper>
             <Input
+                onFocus={errorMessage && errorMessage.length > 0 ? clearErrorCallback : null}
                 inputContainerStyle={styles.input}
                 placeholder={"maya@gmail.com"}
                 rightIcon={
@@ -32,6 +42,7 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
                 autoCorrect={false}
             />
             <Input
+                onFocus={errorMessage && errorMessage.length > 0 ? clearErrorCallback : null}
                 inputContainerStyle={styles.input}
                 placeholder={"kCj!cC#gL8c"}
                 rightIcon={
@@ -56,6 +67,7 @@ const AuthForm = ({errorMessage, headerText, callbackOnSubmit, submitButtonTitle
                 <Button
                     buttonStyle={styles.submitButton}
                     onPress={() => {
+                        setShowSpinner(true);
                         callbackOnSubmit({email, password});
                     }}
                     title={submitButtonTitle}/>

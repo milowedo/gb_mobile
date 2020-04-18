@@ -6,7 +6,7 @@ const DEFAULT_MARGIN = 15;
 const MarginWrapper = ({margin, children}) => {
     return (
         <View
-            style = {{margin: margin ? margin : DEFAULT_MARGIN}}>
+            style={{margin: margin ? margin : DEFAULT_MARGIN}}>
             {children}
         </View>
     )

@@ -33,7 +33,7 @@ const signup = (dispatch) => async ({email, password}) => {
                 }),
             }
         );
-        if (!response.ok){
+        if (!response.ok) {
             throw new Error("Problem with authentication");
         }
         const responseObject = await response.json();
@@ -58,7 +58,7 @@ const signin = (dispatch) => async ({email, password}) => {
                 }),
             }
         );
-        if (!response.ok){
+        if (!response.ok) {
             throw new Error("Problem with authentication");
         }
         const responseObject = await response.json();
@@ -66,7 +66,7 @@ const signin = (dispatch) => async ({email, password}) => {
         dispatch({type: "signin", payload: responseObject.token});
         navigate('AppFlow');
     } catch (e) {
-        console.error("AuthenticationContext signin" , e.stackTrace);
+        console.log("AuthenticationContext signin", e);
         dispatch({type: 'add_error', payload: "Something went wrong with sign in"})
     }
 };

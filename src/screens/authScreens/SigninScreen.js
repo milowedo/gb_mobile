@@ -19,9 +19,10 @@ const SigninScreen = () => {
                 headerText="Sign in"
                 callbackOnSubmit={signin}
                 submitButtonTitle="Sign in"
+                clearErrorCallback={clearErrorMessage}
             />
             <NavLink
-                containerStyle={{position:'absolute', bottom:0}}
+                containerStyle={{position: 'absolute', bottom: 0}}
                 routeName="Signup"
                 text="Don't have an account? Sign up instead"
             />

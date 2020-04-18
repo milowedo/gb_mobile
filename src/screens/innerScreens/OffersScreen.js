@@ -5,6 +5,7 @@ import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 import OffersListItem from "../../components/lists/OffersListItem";
 import {Context} from "../../context/BooksContext";
 import {Icon} from "react-native-elements";
+import Spinner from "../../components/utilities/Spinner";
 
 const OffersScreen = () => {
     const {state: {calculated}, calculateOffers} = useContext(Context);
@@ -26,61 +27,62 @@ const OffersScreen = () => {
         }
     }, [isMounted]);
 
-
-    return (
-        <>
-            {/*TODO implement it in further release*/}
-            {/*<View style={styles.topGroupWithButtonsStyle}>*/}
-            {/*    /!*<Text style={styles.filterHeaderStyle}>filter</Text>*!/*/}
-            {/*    <View style={styles.buttonsTopGroupStyle}>*/}
-            {/*        <Button*/}
-            {/*            containerStyle={styles.singleButtonTopStyle}*/}
-            {/*            title={"count"}*/}
-            {/*        />*/}
-            {/*        <Button*/}
-            {/*            containerStyle={styles.singleButtonTopStyle}*/}
-            {/*            title={"lowest price"}*/}
-            {/*        />*/}
-            {/*        <Button*/}
-            {/*            containerStyle={styles.singleButtonTopStyle}*/}
-            {/*            title={"include"}*/}
-            {/*        />*/}
-            {/*    </View>*/}
-            {/*</View>*/}
-            <View>
-                <Icon
-                    size={30}
-                    containerStyle={{
-                        margin:5,
-                        alignItems:"flex-start"}}
-                    name='refresh'
-                    type='evilicon'
-                    color="black"
-                    onPress={
-                        () => {
-                            calculateOffers()
+    return calculated === undefined ? <Spinner/>
+        : (
+            <>
+                {/*TODO implement it in further release*/}
+                {/*<View style={styles.topGroupWithButtonsStyle}>*/}
+                {/*    /!*<Text style={styles.filterHeaderStyle}>filter</Text>*!/*/}
+                {/*    <View style={styles.buttonsTopGroupStyle}>*/}
+                {/*        <Button*/}
+                {/*            containerStyle={styles.singleButtonTopStyle}*/}
+                {/*            title={"count"}*/}
+                {/*        />*/}
+                {/*        <Button*/}
+                {/*            containerStyle={styles.singleButtonTopStyle}*/}
+                {/*            title={"lowest price"}*/}
+                {/*        />*/}
+                {/*        <Button*/}
+                {/*            containerStyle={styles.singleButtonTopStyle}*/}
+                {/*            title={"include"}*/}
+                {/*        />*/}
+                {/*    </View>*/}
+                {/*</View>*/}
+                <View>
+                    <Icon
+                        size={30}
+                        containerStyle={{
+                            margin: 5,
+                            alignItems: "flex-start"
+                        }}
+                        name='refresh'
+                        type='evilicon'
+                        color="black"
+                        onPress={
+                            () => {
+                                calculateOffers()
+                            }
                         }
-                    }
-                />
-            </View>
-            <View style={styles.offersListStyle}>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={calculated}
-                    keyExtractor={offer => offer.seller.seller_id}
-                    renderItem={({item}) => {
-                        return <OffersListItem books={item.bookResult}
-                                               totalPrice={item.seller.total}
-                                               delivery={item.seller.lowestPriceDelivery}
-                                               id={item.seller.seller_id}
-                        />
+                    />
+                </View>
+                <View style={styles.offersListStyle}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        data={calculated}
+                        keyExtractor={offer => offer.seller.seller_id}
+                        renderItem={({item}) => {
+                            return <OffersListItem books={item.bookResult}
+                                                   totalPrice={item.seller.total}
+                                                   delivery={item.seller.lowestPriceDelivery}
+                                                   id={item.seller.seller_id}
+                            />
 
-                    }
-                    }/>
-            </View>
+                        }
+                        }/>
+                </View>
 
-        </>
-    )
+            </>
+        )
 };
 
 OffersScreen.navigationOptions = {
