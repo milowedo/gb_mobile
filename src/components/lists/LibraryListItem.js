@@ -33,7 +33,7 @@ const LibraryListItem = ({book, price, editCallback}) => {
                                 setPriceChanged(text)
                             }
                             onBlur={() => {
-                                if (!isNaN(priceChanged)) {
+                                if (!isNaN(priceChanged) && priceChanged !== book.price) {
                                     editCallback(book._id, priceChanged)
                                 }
                             }}
