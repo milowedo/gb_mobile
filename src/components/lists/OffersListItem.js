@@ -7,7 +7,7 @@ const OffersListItem = ({id, books, totalPrice, delivery}) => {
 
     return (
         <View style={offerStyles.container}>
-            {/*<Text style={offerStyles.sellerNameStyle}>{id}</Text>*/}
+            <Text style={offerStyles.topTotalPriceStyle}>total: {(totalPrice).toFixed(2)}</Text>
 
             <FlatList
                 showsVerticalScrollIndicator={false}
@@ -30,7 +30,7 @@ const OffersListItem = ({id, books, totalPrice, delivery}) => {
                                 />
                             </View>
                             <TouchableOpacity style={offerStyles.bookRowTextChild}
-                                                onPress={() => Linking.openURL("https://allegro.pl/oferta/".concat(item.auction_id)).catch((err) => console.error('An error occurred', err))}>
+                                              onPress={() => Linking.openURL("https://allegro.pl/oferta/".concat(item.auction_id)).catch((err) => console.error('An error occurred', err))}>
                                 <View>
                                     <Text style={libraryStyles.titleStyle}>{item.bookTitle}</Text>
                                     <Text style={libraryStyles.writerStyle}>{item.writer}</Text>
@@ -43,15 +43,14 @@ const OffersListItem = ({id, books, totalPrice, delivery}) => {
                         </View>
                     )
                 }
-            }
-        />
-    <View style={offerStyles.bottomInfoStyle}>
-        <Text style={offerStyles.bottomInfoTotalPriceStyle}>total: {(totalPrice).toFixed(2)}</Text>
-        <Text style={offerStyles.bottomInfoDeliveryStyle}>+ delivery from: {(delivery).toFixed(2)}</Text>
-    </View>
-</View>
-)
-    ;
+                }
+            />
+
+            <Text style={offerStyles.bottomInfoDeliveryStyle}>+ delivery from: {(delivery).toFixed(2)}</Text>
+
+        </View>
+    )
+        ;
 };
 
 export default pure(OffersListItem);
@@ -64,7 +63,7 @@ const offerStyles = StyleSheet.create(
             margin: 10,
             padding: 5,
         },
-        sellerNameStyle: {
+        topTotalPriceStyle: {
             textAlign: 'right',
             paddingVertical: 6,
             paddingRight: 16,
@@ -107,12 +106,8 @@ const offerStyles = StyleSheet.create(
             alignSelf: 'center',
             fontSize: 16,
         },
-        bottomInfoStyle: {
-            marginHorizontal: 8,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-        },
         bottomInfoTotalPriceStyle: {},
-        bottomInfoDeliveryStyle: {},
+        bottomInfoDeliveryStyle: {
+            textAlign: 'center',},
     }
 );
