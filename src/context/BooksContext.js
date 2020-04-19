@@ -12,9 +12,11 @@ const booksReducer = (state, action) => {
             console.info("BooksContext reducer: returning my lib");
             return {...state, my: action.payload};
         case 'delete_my_book':
+            console.info("BooksContext reducer: deleting book from library");
             myBooks = state.my.filter((element) => element._id !== action.payload);
             return {...state, my: myBooks};
         case 'add_to_library':
+            console.info("BooksContext reducer: adding book to library");
             myBooks = state.my.concat(
                 {
                     _id: action.payload._id,
@@ -25,11 +27,14 @@ const booksReducer = (state, action) => {
                 ...state, my: myBooks
             };
         case 'get_wanted_books':
+            console.info("BooksContext reducer: returning wanted");
             return {...state, wanted: action.payload};
         case 'delete_wanted_book':
+            console.info("BooksContext reducer: deleting book from wanted");
             wantedBooks = state.wanted.filter((element) => element._id !== action.payload);
             return {...state, wanted: wantedBooks};
         case 'add_to_wanted':
+            console.info("BooksContext reducer: adding book to wanted");
             wantedBooks = state.wanted.concat(
                 {
                     _id: action.payload._id,
@@ -41,15 +46,19 @@ const booksReducer = (state, action) => {
                 ...state, wanted: wantedBooks
             };
         case 'calculate_offers':
+            console.info("BooksContext reducer: offers calculated");
             return {...state, calculated: action.payload.calculated};
         case 'edit_price':
             state.wanted.forEach((element) => {
-                if(element._id === action.payload.id) {
-                    element.price  = action.payload.price;
+                if (element._id === action.payload.id) {
+                    element.price = action.payload.price;
                 }
             });
             return {...state};
+        case 'set_reloadFlag':
+            return {...state, reloadFlag: action.payload.flagValue}
         default:
+            console.log("BooksContext reducer : default")
             return [];
     }
 };
@@ -125,8 +134,13 @@ const editWantedBookPrice = dispatch => async (id, price) => {
     persistBooks("wanted");
 }
 
-const calculateOffers = dispatch => async () => {
-    if(!wantedBooks) return
+const calculateOffers = dispatch => async (reload = false) => {
+    if (!wantedBooks) {
+        return
+    }
+    if (reload) {
+        dispatch({type: 'set_reloadFlag', payload: {flagValue: reload}})
+    }
     fetch(`${gateway}/calculate`, {
             method: 'POST',
             headers: {
@@ -141,9 +155,12 @@ const calculateOffers = dispatch => async () => {
             }
             return response.json();
         }
-    ).then(json => json).then((data) =>{
-        console.log(`${data.length} books were successfully received from the service.`);
-        dispatch({type: 'calculate_offers', payload: {calculated: data}})
+    ).then(json => json).then((data) => {
+            console.log(`${data.length} books were successfully received from the service.`);
+            dispatch({type: 'calculate_offers', payload: {calculated: data}})
+            if (reload) {
+                dispatch({type: 'set_reloadFlag', payload: {flagValue: false}})
+            }
         }
     );
 }

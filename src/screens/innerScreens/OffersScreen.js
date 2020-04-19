@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {FlatList, StyleSheet, View} from "react-native";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
@@ -8,13 +8,14 @@ import {Icon} from "react-native-elements";
 import Spinner from "../../components/utilities/Spinner";
 
 const OffersScreen = () => {
-    const {state: {calculated, wanted}, calculateOffers} = useContext(Context);
+    const {state: {calculated, wanted, reloadFlag}, calculateOffers} = useContext(Context);
 
     useEffect(() => {
-        if(wanted !== undefined && calculated === undefined){
+        if (wanted !== undefined && calculated === undefined) {
+            console.log("inner useEffect reloadFlag is: ", reloadFlag)
             calculateOffers()
         }
-    })
+    }, [reloadFlag])
 
     // const useIsMounted = () => {
     //     const isMounted = useRef(false);
@@ -33,7 +34,7 @@ const OffersScreen = () => {
     //     }
     // }, [isMounted]);
 
-    return wanted !== undefined && calculated === undefined ? <Spinner/>
+    return (wanted !== undefined && calculated === undefined) || (reloadFlag === true) ? <Spinner/>
         : (
             <>
                 {/*TODO implement it in further release*/}
@@ -66,7 +67,7 @@ const OffersScreen = () => {
                         color="black"
                         onPress={
                             () => {
-                                calculateOffers()
+                                calculateOffers(true)
                             }
                         }
                     />
