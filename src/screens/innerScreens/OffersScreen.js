@@ -12,7 +12,6 @@ const OffersScreen = () => {
 
     useEffect(() => {
         if (wanted !== undefined && calculated === undefined) {
-            console.log("inner useEffect reloadFlag is: ", reloadFlag)
             calculateOffers()
         }
     }, [reloadFlag])

@@ -11,7 +11,7 @@ const WantedScreen = ({navigation}) => {
     const {state: {wanted}, fetchWantedBooks, deleteWantedBook, addBookToWanted, editWantedBookPrice} = useContext(Context);
 
     useEffect(() => {
-        console.debug("WantedScreen: useEffect function");
+        console.debug("WantedScreen: inside useEffect function");
         fetchWantedBooks();
         return () => {
             console.debug("WantedScreen: useEffect return");
