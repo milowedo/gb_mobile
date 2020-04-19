@@ -17,6 +17,7 @@ const booksReducer = (state, action) => {
             return {...state, my: myBooks};
         case 'add_to_library':
             console.info("BooksContext reducer: adding book to library");
+            if (action.payload._id === '1') myBooks = [];
             myBooks = state.my.concat(
                 {
                     _id: action.payload._id,
@@ -35,6 +36,7 @@ const booksReducer = (state, action) => {
             return {...state, wanted: wantedBooks};
         case 'add_to_wanted':
             console.info("BooksContext reducer: adding book to wanted");
+            if (action.payload._id === '1') wantedBooks = [];
             wantedBooks = state.wanted.concat(
                 {
                     _id: action.payload._id,
@@ -109,7 +111,12 @@ const deleteMyBook = dispatch => async (id) => {
     persistBooks("library");
 };
 const addBookToLibrary = dispatch => async (title, writer) => {
-    const _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
+    let _id;
+    if (myBooks === null || myBooks.length === 0) {
+        _id = '1';
+    } else {
+        _id = (Math.max.apply(null, myBooks.map(e => e._id)) + 1).toString();
+    }
     await dispatch({type: 'add_to_library', payload: {_id, title, writer}});
     persistBooks("library");
 };
@@ -123,7 +130,12 @@ const deleteWantedBook = dispatch => async (id) => {
     persistBooks("wanted");
 };
 const addBookToWanted = dispatch => async (title, writer, price) => {
-    const _id = (Math.max.apply(null, wantedBooks.map(e => e._id)) + 1).toString();
+    let _id;
+    if (wantedBooks === null || wantedBooks.length === 0) {
+        _id = '1';
+    } else {
+        _id = (Math.max.apply(null, wantedBooks.map(e => e._id)) + 1).toString();
+    }
     dispatch({type: 'add_to_wanted', payload: {_id, title, writer, price}});
     persistBooks("wanted");
 };
