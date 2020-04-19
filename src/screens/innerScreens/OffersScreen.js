@@ -69,9 +69,11 @@ const OffersScreen = () => {
                 {/*</View>*/}
                 <View>
                     <Icon
-                        size={30}
+                        size={45}
                         containerStyle={{
                             margin: 5,
+                            marginLeft: 8,
+                            marginTop: 8,
                             alignItems: "flex-start"
                         }}
                         name='refresh'
