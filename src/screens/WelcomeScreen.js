@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    Image, Platform, ScrollView, StyleSheet,
-    Text, TouchableOpacity, View,
-} from 'react-native';
+import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 
 import {MonoText} from '../components/utilities/StyledText';
 
@@ -16,7 +13,7 @@ export default function WelcomeScreen({navigation}) {
                     <Image
                         source={
                             __DEV__
-                                ? require('../../assets/images/robot-dev.png')
+                                ? require('../../assets/images/icon_book.png')
                                 : require('../../assets/images/robot-prod.png')
                         }
                         style={styles.welcomeImage}

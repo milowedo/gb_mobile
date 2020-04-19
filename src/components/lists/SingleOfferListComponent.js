@@ -16,10 +16,10 @@ const SingleOfferListComponent = ({listId, listElements, imagesDownloading}) => 
                 <View style={offerStyles.listElementStyle}>
                     <View style={offerStyles.bookRowImageChild}>
                         {imagesDownloading ? <Image
-                            source={item.imageUrl[0] ? {uri: item.imageUrl[0].url} : require('../../../assets/images/robot-dev.png')}
+                            source={item.imageUrl[0] ? {uri: item.imageUrl[0].url} : require('../../../assets/images/icon_book.png')}
                             style={offerStyles.img}
                         /> : <Image
-                            source={require('../../../assets/images/robot-dev.png')}
+                            source={require('../../../assets/images/icon_book.png')}
                             style={offerStyles.img}
                         />}
                     </View>
