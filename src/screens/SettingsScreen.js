@@ -1,31 +1,31 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, CheckBox, Icon} from "react-native-elements";
 import {navigate} from "../utils/navigationHelper";
-import {AsyncStorage, StyleSheet, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import MarginWrapper from "../components/utilities/MarginWrapper";
 import {Context as AuthContext} from "../context/AuthenticationContext";
+import {Context as SettingsContext} from "../context/SettingsContext";
 import {headerStyles} from "../constants/Layouts";
 
 const SettingsScreen = () => {
     const {signout} = useContext(AuthContext);
+    const {state: {imagesDownloading}, getImagesSettingProperty, setImagesSettingProperty} = useContext(SettingsContext);
     const [downloadPicturesFlag, setDownloadFlag] = useState(true);
 
     useEffect(() => {
-        fetchProperty();
+        let mounted = true;
+        console.log("In the settingsScreen useffect")
+        if (mounted) {
+            if (imagesDownloading !== undefined) {
+                setDownloadFlag(imagesDownloading);
+            } else {
+                getImagesSettingProperty()
+            }
+        }
         return () => {
+            mounted = false;
         }
-    }, []);
-
-    async function fetchProperty() {
-        const savedProperty = await AsyncStorage.getItem('downloadPictures');
-        if (savedProperty !== null) {
-            setDownloadFlag(savedProperty === 'true');
-        }
-    }
-
-    async function saveProperty(currentValue) {
-        await AsyncStorage.setItem('downloadPictures', !currentValue + '');
-    }
+    }, [imagesDownloading]);
 
     return (
         <View style={{flex: 1, alignItems: 'center', paddingHorizontal: 50, marginTop: 100}}>
@@ -37,8 +37,8 @@ const SettingsScreen = () => {
                 title='Download offer pictures (uses cellular data)'
                 checked={downloadPicturesFlag}
                 onPress={() => {
-                    saveProperty(downloadPicturesFlag)
                     setDownloadFlag(!downloadPicturesFlag)
+                    setImagesSettingProperty(!downloadPicturesFlag);
                 }}
             />
         </View>

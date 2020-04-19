@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {pure} from 'recompose';
 import SingleOfferListComponent from "./SingleOfferListComponent";
 
-const OffersListItem = ({id, books, duplicates, totalPrice, delivery}) => {
+const OffersListItem = ({id, books, duplicates, totalPrice, delivery, imagesDownloading}) => {
 
     const [showDuplicates, setShowDuplicates] = useState(false);
 
@@ -14,6 +14,7 @@ const OffersListItem = ({id, books, duplicates, totalPrice, delivery}) => {
             <SingleOfferListComponent
                 listId={id}
                 listElements={books}
+                imagesDownloading={imagesDownloading}
             />
 
             <View style={offerStyles.bottomTabStyle}>
@@ -30,6 +31,7 @@ const OffersListItem = ({id, books, duplicates, totalPrice, delivery}) => {
                 <SingleOfferListComponent
                     listId={id}
                     listElements={duplicates}
+                    imagesDownloading={imagesDownloading}
                 /> : null}
 
         </View>

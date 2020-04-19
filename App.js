@@ -9,6 +9,7 @@ import AppNavigator from './src/navigation/AppSwitchNavigator';
 import {setNavigator} from "./src/utils/navigationHelper";
 import {Provider as AuthenticationProvider} from './src/context/AuthenticationContext'
 import {Provider as BooksProvider} from './src/context/BooksContext'
+import {Provider as SettingsProvider} from './src/context/SettingsContext'
 
 const authService = "https://gb-auth.herokuapp.com";
 
@@ -31,9 +32,11 @@ export default function App(props) {
         return (
             <View style={styles.container}>
                 <BooksProvider>
-                    <AuthenticationProvider>
-                        <AppNavigator ref={setNavigator}/>
-                    </AuthenticationProvider>
+                    <SettingsProvider>
+                        <AuthenticationProvider>
+                            <AppNavigator ref={setNavigator}/>
+                        </AuthenticationProvider>
+                    </SettingsProvider>
                 </BooksProvider>
             </View>
         );

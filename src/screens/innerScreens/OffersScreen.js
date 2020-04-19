@@ -6,9 +6,22 @@ import OffersListItem from "../../components/lists/OffersListItem";
 import {Context as BooksContext} from "../../context/BooksContext";
 import {Icon} from "react-native-elements";
 import Spinner from "../../components/utilities/Spinner";
+import {Context as SettingsContext} from "../../context/SettingsContext";
 
 const OffersScreen = () => {
     const {state: {calculated, wanted, reloadFlag}, calculateOffers} = useContext(BooksContext);
+
+    const {state: {imagesDownloading}, getImagesSettingProperty} = useContext(SettingsContext);
+
+    useEffect(() => {
+        let mounted = true;
+        if (mounted && imagesDownloading === undefined) {
+            getImagesSettingProperty()
+        }
+        return () => {
+            mounted = false;
+        }
+    }, [imagesDownloading]);
 
     useEffect(() => {
         if (wanted !== undefined && calculated === undefined) {
@@ -82,6 +95,7 @@ const OffersScreen = () => {
                                                    delivery={item.seller.lowestPriceDelivery}
                                                    id={item.seller.seller_id}
                                                    duplicates={item.bookDuplicates}
+                                                   imagesDownloading={imagesDownloading}
                             />
                         }
                         }/>

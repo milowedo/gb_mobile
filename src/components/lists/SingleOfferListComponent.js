@@ -1,26 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {AsyncStorage, FlatList, Image, Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React from "react";
+import {FlatList, Image, Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {libraryStyles} from "./LibraryListItem";
 
-const SingleOfferListComponent = ({listId, listElements}) => {
-
-    const [imageLoading, setImageLoading] = useState(true)
-
-    useEffect(() => {
-        getDownloadingPhotosProperty()
-        return () => {
-        }
-    }, []);
-
-    async function getDownloadingPhotosProperty() {
-        await AsyncStorage.getItem('downloadPictures')
-            .then(value => {
-                if (value !== null) {
-                    setImageLoading(value === "true")
-                }
-            });
-    }
-
+const SingleOfferListComponent = ({listId, listElements, imagesDownloading}) => {
 
     return <FlatList
         showsVerticalScrollIndicator={false}
@@ -33,7 +15,7 @@ const SingleOfferListComponent = ({listId, listElements}) => {
             return (
                 <View style={offerStyles.listElementStyle}>
                     <View style={offerStyles.bookRowImageChild}>
-                        {imageLoading ? <Image
+                        {imagesDownloading ? <Image
                             source={item.imageUrl[0] ? {uri: item.imageUrl[0].url} : require('../../../assets/images/robot-dev.png')}
                             style={offerStyles.img}
                         /> : <Image
