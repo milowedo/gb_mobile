@@ -10,9 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/robot-dev.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/robot-dev.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,8 +22,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
+    "android": {
+
+      "package": "com.milowedo",
+      "versionCode": 1
     }
   }
 }

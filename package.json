@@ -5,14 +5,12 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "jest --watchAll",
     "postinstall": "jetifier -r"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/samples": "~3.0.3",
     "@expo/vector-icons": "^10.0.3",
     "@react-navigation/core": "latest",
     "@react-navigation/native": "latest",
