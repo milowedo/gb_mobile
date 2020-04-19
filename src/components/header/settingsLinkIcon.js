@@ -5,7 +5,7 @@ import React from "react";
 const settingsIcon = () => (
     <Icon
         size={30}
-        containerStyle={{paddingRight: 10}}
+        containerStyle={{paddingRight: 20}}
         name="gear"
         type='evilicon'
         color="white"
