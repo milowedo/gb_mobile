@@ -12,8 +12,8 @@
     "orientation": "portrait",
     "icon": "./assets/images/robot-dev.png",
     "splash": {
-      "image": "./assets/images/robot-dev.png",
-      "resizeMode": "contain",
+      "image": "./assets/images/splash_milosz.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
