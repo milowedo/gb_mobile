@@ -3,12 +3,12 @@ import {FlatList, StyleSheet, View} from "react-native";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 import OffersListItem from "../../components/lists/OffersListItem";
-import {Context} from "../../context/BooksContext";
+import {Context as BooksContext} from "../../context/BooksContext";
 import {Icon} from "react-native-elements";
 import Spinner from "../../components/utilities/Spinner";
 
 const OffersScreen = () => {
-    const {state: {calculated, wanted, reloadFlag}, calculateOffers} = useContext(Context);
+    const {state: {calculated, wanted, reloadFlag}, calculateOffers} = useContext(BooksContext);
 
     useEffect(() => {
         if (wanted !== undefined && calculated === undefined) {

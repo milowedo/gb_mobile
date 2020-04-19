@@ -6,7 +6,6 @@ import {NavigationEvents} from "react-navigation";
 import {signingStyles as styles} from "../../constants/Layouts"
 import {Context as AuthContext} from "../../context/AuthenticationContext";
 
-
 const SignupScreen = () => {
 
     const {state, signup, clearErrorMessage} = useContext(AuthContext);
@@ -20,11 +19,11 @@ const SignupScreen = () => {
                 callbackOnSubmit={signup}
                 submitButtonTitle="Sign up"
             />
-                <NavLink
-                    containerStyle={{position:'absolute', bottom:0}}
-                    text="Already have an account? Sign in instead"
-                    routeName="Signin"
-                />
+            <NavLink
+                containerStyle={{position: 'absolute', bottom: 0}}
+                text="Already have an account? Sign in instead"
+                routeName="Signin"
+            />
         </View>
     )
 };

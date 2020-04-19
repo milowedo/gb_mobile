@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import MarginWrapper from "../utilities/MarginWrapper";
 import {Button, Icon, Input, Text} from "react-native-elements";
 import {signingStyles as styles} from "../../constants/Layouts"
@@ -10,7 +10,7 @@ const AuthForm = ({errorMessage, clearErrorCallback, headerText, callbackOnSubmi
     const [showSpinner, setShowSpinner] = useState(false);
 
     useEffect(() => {
-        if(errorMessage) {
+        if (errorMessage) {
             setShowSpinner(false)
         }
     });

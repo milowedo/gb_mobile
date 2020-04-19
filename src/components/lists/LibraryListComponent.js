@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {SwipeListView} from "react-native-swipe-list-view";
-import {ActivityIndicator, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import LibraryListItem from "./LibraryListItem";
 import {Icon} from "react-native-elements";
 import BookForm from "../forms/BookForm";

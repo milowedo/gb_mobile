@@ -30,7 +30,7 @@ const OffersListItem = ({id, books, duplicates, totalPrice, delivery}) => {
                 <SingleOfferListComponent
                     listId={id}
                     listElements={duplicates}
-                /> : null }
+                /> : null}
 
         </View>
     )

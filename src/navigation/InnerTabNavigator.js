@@ -35,7 +35,8 @@ MyLibraryStack.navigationOptions = {
     swipeEnabled: false,
     tabBarLabel: 'Library',
     tabBarIcon: ({focused}) => (
-        focused ? <Icon name="archive" type="evilicon" color="white"/> : <Icon name="archive" type="evilicon" color="#525257"/>
+        focused ? <Icon name="archive" type="evilicon" color="white"/> :
+            <Icon name="archive" type="evilicon" color="#525257"/>
     ),
 };
 
@@ -43,7 +44,8 @@ WantedStack.navigationOptions = {
     swipeEnabled: false,
     tabBarLabel: 'Wanted',
     tabBarIcon: ({focused}) => (
-        focused ? <Icon name="search" type="evilicon" color="white"/> : <Icon name="search" type="evilicon" color="#525257"/>
+        focused ? <Icon name="search" type="evilicon" color="white"/> :
+            <Icon name="search" type="evilicon" color="#525257"/>
     ),
 };
 
@@ -51,7 +53,8 @@ OffersStack.navigationOptions = {
     swipeEnabled: true,
     tabBarLabel: 'Offers',
     tabBarIcon: ({focused}) => (
-        focused ? <Icon name="cart" type="evilicon" color="white"/> : <Icon name="cart" type="evilicon" color="#525257"/>
+        focused ? <Icon name="cart" type="evilicon" color="white"/> :
+            <Icon name="cart" type="evilicon" color="#525257"/>
     )
 };
 

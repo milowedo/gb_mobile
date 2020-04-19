@@ -6,7 +6,6 @@ import NavLink from "../../components/NavLink";
 import {signingStyles as styles} from "../../constants/Layouts"
 import {Context as AuthContext} from "../../context/AuthenticationContext";
 
-
 const SigninScreen = () => {
 
     const {state, signin, clearErrorMessage} = useContext(AuthContext);

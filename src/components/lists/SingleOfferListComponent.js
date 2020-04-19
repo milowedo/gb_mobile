@@ -8,13 +8,14 @@ const SingleOfferListComponent = ({listId, listElements}) => {
 
     useEffect(() => {
         getDownloadingPhotosProperty()
-        return () => {}
+        return () => {
+        }
     }, []);
 
     async function getDownloadingPhotosProperty() {
         await AsyncStorage.getItem('downloadPictures')
             .then(value => {
-                if(value !== null) {
+                if (value !== null) {
                     setImageLoading(value === "true")
                 }
             });

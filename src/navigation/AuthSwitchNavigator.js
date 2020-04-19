@@ -7,7 +7,7 @@ const AuthStackNavigator = createSwitchNavigator(
     {
         Signin: SigninScreen,
         Signup: SignupScreen
-    },{
+    }, {
         initialRouteName: 'Signin'
     }
 );

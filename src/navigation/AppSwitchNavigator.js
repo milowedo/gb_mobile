@@ -15,7 +15,7 @@ export default createAppContainer(
             AppFlow: createSwitchNavigator({
                 TabNav: InnerTabNavigator,
                 Settings: createStackNavigator({Settings: SettingsScreen}),
-            },{
+            }, {
                 backBehavior: 'order'
             }),
         },

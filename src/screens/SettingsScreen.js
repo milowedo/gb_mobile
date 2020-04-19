@@ -1,19 +1,19 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, CheckBox, Icon} from "react-native-elements";
 import {navigate} from "../utils/navigationHelper";
-import {AsyncStorage, StyleSheet, Text, View} from "react-native";
+import {AsyncStorage, StyleSheet, View} from "react-native";
 import MarginWrapper from "../components/utilities/MarginWrapper";
-import {Context} from "../context/AuthenticationContext";
+import {Context as AuthContext} from "../context/AuthenticationContext";
 import {headerStyles} from "../constants/Layouts";
 
-
 const SettingsScreen = () => {
-    const {signout} = useContext(Context);
+    const {signout} = useContext(AuthContext);
     const [downloadPicturesFlag, setDownloadFlag] = useState(true);
 
     useEffect(() => {
         fetchProperty();
-        return () => {}
+        return () => {
+        }
     }, []);
 
     async function fetchProperty() {

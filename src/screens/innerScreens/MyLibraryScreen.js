@@ -1,13 +1,13 @@
 import React, {useContext, useEffect} from 'react'
-import {View, StyleSheet} from "react-native";
-import {Context} from "../../context/BooksContext";
+import {StyleSheet, View} from "react-native";
+import {Context as BooksContext} from "../../context/BooksContext";
 import LibraryListComponent from "../../components/lists/LibraryListComponent";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 
-const MyLibraryScreen = ({navigation}) => {
+const MyLibraryScreen = () => {
 
-    const {state: {my}, fetchMyBooks, deleteMyBook, addBookToLibrary} = useContext(Context);
+    const {state: {my}, fetchMyBooks, deleteMyBook, addBookToLibrary} = useContext(BooksContext);
 
     useEffect(() => {
         console.info("MyLibraryScreen: useEffect function");
@@ -16,7 +16,6 @@ const MyLibraryScreen = ({navigation}) => {
             console.info("MyLibraryScreen: useEffect return");
         }
     }, []);
-
 
     return (
         <View style={styles.container}>

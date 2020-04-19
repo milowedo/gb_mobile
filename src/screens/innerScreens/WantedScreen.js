@@ -1,14 +1,14 @@
 import React, {useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Context} from "../../context/BooksContext";
+import {Context as BooksContext} from "../../context/BooksContext";
 import LibraryListComponent from "../../components/lists/LibraryListComponent";
 import {headerStyles} from "../../constants/Layouts";
 import settingsLinkIcon from "../../components/header/settingsLinkIcon";
 import {withNavigation} from "react-navigation";
 
-const WantedScreen = ({navigation}) => {
+const WantedScreen = () => {
 
-    const {state: {wanted}, fetchWantedBooks, deleteWantedBook, addBookToWanted, editWantedBookPrice} = useContext(Context);
+    const {state: {wanted}, fetchWantedBooks, deleteWantedBook, addBookToWanted, editWantedBookPrice} = useContext(BooksContext);
 
     useEffect(() => {
         console.debug("WantedScreen: inside useEffect function");
@@ -30,7 +30,6 @@ const WantedScreen = ({navigation}) => {
         </View>
     );
 };
-
 
 WantedScreen.navigationOptions = {
     title: 'Wanted',

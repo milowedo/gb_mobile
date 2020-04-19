@@ -6,7 +6,6 @@ export const setNavigator = (nav) => {
     navigator = nav;
 };
 
-
 export const navigate = (routeName, params) => {
     let action;
     if (routeName === "Back") {
