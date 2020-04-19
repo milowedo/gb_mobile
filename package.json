@@ -3,7 +3,6 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
-    "ios": "expo start --ios",
     "eject": "expo eject",
     "postinstall": "jetifier -r"
   },
@@ -12,15 +11,10 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.3",
-    "@react-navigation/core": "latest",
-    "@react-navigation/native": "latest",
-    "braces": "^3.0.2",
     "expo": "^35.0.0",
     "expo-asset": "^7.0.0",
-    "expo-constants": "^7.0.0",
     "expo-font": "^7.0.0",
     "react": "16.8.3",
-    "react-dom": "16.8.3",
     "react-native": "^0.59.10",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "~1.3.0",
@@ -29,9 +23,7 @@
     "react-native-swipe-list-view": "^2.5.0",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.3.7",
-    "react-navigation-transitions": "^1.0.12",
-    "recompose": "^0.30.0",
-    "watchman": "^1.0.0"
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^7.0.0",
